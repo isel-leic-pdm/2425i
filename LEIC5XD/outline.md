@@ -14,11 +14,11 @@
 * [Coding Conventions | Kotlin Documentation](https://kotlinlang.org/docs/coding-conventions.html)
 
 #### Video lecture (in Portuguese): 
-* Android @ ISEL - 2024 - (01) Apresentação _(coming soon)_
+* [Android @ ISEL - 2024 - (01) Apresentação](https://www.youtube.com/live/vA3tJif2mvE?si=LbBhVcN_8Em17DrA)
 
 ### Practical Class
 * Goal: Install Android Studio and create a new project (the *Hello Android* app) using Andrdoid Studio's wizard.
-* Challenge: From the miriad of questions that may arise, elect the two most relevant  for improving your mental model of the Android platform.
+* Challenge: From the myriad of questions that may arise, elect the two most relevant  for improving your mental model of the Android platform.
 
 ### Bonus Content
 * Lecture video (in Portuguese): Revisiting Classes, Values and Objects
