@@ -46,6 +46,9 @@
   * [State and Jetpack Compose](https://developer.android.com/jetpack/compose/state)
   * [Test your Compose layout](https://developer.android.com/develop/ui/compose/testing)
 
+#### Video lecture (in Portuguese):
+* [Android @ ISEL - 2024 - (02-A) Construindo a UI com Compose](https://youtu.be/c58d1Tb0jzU?si=14L1inlQw2e86OGU)
+
 ### Practical Class
 * Goal: Create a simple UI with Jetpack Compose
 * Challenge: Implement the CrowdTally application, used for counting the attendance in a venue with limited capacity. The application is comprosed of a screen with the current count and buttons to decrease and increase that count.
