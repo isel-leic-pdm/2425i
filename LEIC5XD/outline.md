@@ -51,7 +51,7 @@
 
 ### Practical Class
 * Goal: Create a simple UI with Jetpack Compose
-* Challenge: Implement the CrowdTally application, used for counting the attendance in a venue with limited capacity. The application is comprosed of a screen with the current count and buttons to decrease and increase that count.
+* Challenge: Implement the CrowdTally application, used for counting the attendance in a venue with limited capacity. The application is comprised of a screen with the current count and buttons to decrease and increase that count.
 * Challenge solution: CrowdTally live coding session video _(coming soon)_
 
 ### Bonus Content

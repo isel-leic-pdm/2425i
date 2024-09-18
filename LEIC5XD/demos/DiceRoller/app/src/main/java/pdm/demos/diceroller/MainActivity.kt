@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -72,7 +71,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DiceRollerScreen() {
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        var dice by remember { mutableIntStateOf(( 1 .. 6).random()) }
+        var dice by remember { mutableIntStateOf((1..6).random()) }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround,
@@ -85,7 +84,7 @@ fun DiceRollerScreen() {
                 contentDescription = null,
                 modifier = Modifier.size(200.dp)
             )
-            Button(onClick = { dice = ( 1 .. 6).random() }) {
+            Button(onClick = { dice = (1..6).random() }) {
                 Text(text = stringResource(R.string.roll_button_text))
             }
         }
