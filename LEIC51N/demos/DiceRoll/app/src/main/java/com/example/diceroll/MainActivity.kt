@@ -70,7 +70,7 @@ fun DiceRollScreen() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-        )   
+        )
         {
 
             Log.v(TAG, "DiceRollScreen")

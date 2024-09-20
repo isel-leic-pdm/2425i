@@ -46,6 +46,7 @@
   * [Compose layout basics - Jetpack](https://developer.android.com/jetpack/compose/layouts/basics)
   * [State and Jetpack Compose](https://developer.android.com/jetpack/compose/state)
   * [Test your Compose layout](https://developer.android.com/develop/ui/compose/testing)
+  * [Material Design for Android](https://developer.android.com/develop/ui/views/theming/look-and-feel)
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (02-A) Construindo a UI com Compose](https://youtu.be/c58d1Tb0jzU?si=14L1inlQw2e86OGU)
@@ -57,3 +58,4 @@
 
 ### Bonus Content
 * Lecture video (in Portuguese): Revisiting Polymorphism and Inheritance _(coming soon)_
+
