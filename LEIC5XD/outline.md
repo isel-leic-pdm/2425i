@@ -1,5 +1,5 @@
 
-## Week 1 - 09/09/2023 to 15/09/2023
+## Week 1 - 09/09/2024 to 15/09/2024
 ### Subject: Course introduction and work environment setup
 
 #### Topic breakdown:
@@ -23,7 +23,7 @@
 ### Bonus Content
 * [Lecture video (in Portuguese): Revisiting Classes, Values and Objects](https://www.youtube.com/live/tiDL_uQmkdI?si=7__MpJ_GPCyVttIK)
 
-## Week 2 - 16/09/2023 to 22/09/2023 (preview)
+## Week 2 - 16/09/2024 to 22/09/2024
 ### Subject: Building the UI with Jetpack Compose
 
 #### Topic breakdown:
@@ -52,7 +52,7 @@
 ### Practical Class
 * Goal: Create a simple UI with Jetpack Compose
 * Challenge: Implement the CrowdTally application, used for counting the attendance in a venue with limited capacity. The application is comprised of a screen with the current count and buttons to decrease and increase that count.
-* Challenge solution: CrowdTally live coding session video _(coming soon)_
+* [Challenge solution: CrowdTally live coding session video](https://youtu.be/Qw7E5oX5vTI?si=XbZ_qjhnQWHBKEfO)
 
 ### Bonus Content
-* Lecture video (in Portuguese): Revisiting Polymorphism and Inheritance _(coming soon)_
+* [Lecture video (in Portuguese): Revisiting Polymorphism and Inheritance](https://youtu.be/m3b6mTpMecc?si=o-If3d2CTfxbXOqb)
