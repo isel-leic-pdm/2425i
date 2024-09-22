@@ -1,25 +1,25 @@
 package pdm.demos.diceroller
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
-import org.junit.Rule
-
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class DiceRollerScreenTests {
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
     fun dice_value_is_displayed() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("pdm.demos.diceroller", appContext.packageName)
+        val dice = roll()
+        composeTestRule.setContent {
+            DiceRollerScreen(dice)
+        }
+
+        composeTestRule.onNodeWithTag(dice.toTestTag()).assertExists()
     }
 }
