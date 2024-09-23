@@ -9,7 +9,7 @@ class DiceTests {
         // Arrange
         val range = 1..6
         // Act
-        val dice = Dice.roll(range)
+        val dice = roll(range)
         // Assert
         assertTrue(dice.value in range)
     }
@@ -20,10 +20,10 @@ class DiceTests {
         val rollsCount = 10
 
         // Act
-        val firstRoll = Dice.roll().value
+        val firstRoll = roll().value
         var diceRollsTotal = firstRoll
         repeat(times = rollsCount - 1) {
-            val dice = Dice.roll()
+            val dice = roll()
             diceRollsTotal += dice.value
         }
 

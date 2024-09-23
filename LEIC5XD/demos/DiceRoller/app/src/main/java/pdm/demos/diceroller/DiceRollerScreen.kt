@@ -14,11 +14,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,7 +33,6 @@ fun DiceRollerScreen(initialDice: Dice = Dice()) {
         topBar = { TopAppBar(title = { Text(text = stringResource(R.string.app_name)) }) },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
-        LocalConfiguration.current.orientation
         var dice by rememberSaveable { mutableStateOf(initialDice) }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
