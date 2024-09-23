@@ -1,79 +1,87 @@
 package pdm.demos.diceroller
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import pdm.demos.diceroller.ui.theme.DiceRollerTheme
 
+/**
+ * The screen implementation, which hosts the screen's state machine.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DiceRollerScreen(initialDice: Dice = Dice()) {
+fun DiceRollerScreen() {
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = stringResource(R.string.app_name)) }) },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
-        var dice by rememberSaveable { mutableStateOf(initialDice) }
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            Image(
-                painter = painterResource(dice.toDiceResource()),
-                contentDescription = "",
-                modifier = Modifier.size(200.dp).testTag(dice.toTestTag())
-            )
-            Button(onClick = { dice = dice.reRoll() }) {
-                Text(text = stringResource(R.string.roll_button_text))
+        var state: DiceRollerScreenState by rememberSaveable(saver = DiceRollerScreenState.Saver) {
+            mutableStateOf(DiceRollerScreenState.Idle(roll()))
+        }
+
+        val currentState = state
+        LaunchedEffect(currentState) {
+            if (currentState is DiceRollerScreenState.Rolling) {
+                delay(2000)
+                state = DiceRollerScreenState.Idle(roll())
             }
+        }
+
+        when (currentState) {
+            is DiceRollerScreenState.Idle -> DiceRollerIdleView(
+                state = currentState,
+                onDiceRollIntent = { state = DiceRollerScreenState.Rolling },
+                modifier = Modifier.padding(innerPadding)
+            )
+
+            else -> DiceRollerRollingView(modifier = Modifier.padding(innerPadding))
         }
     }
 }
 
 /**
- * The resources used to display a dice with the default range of 1 to 6.
+ * The screen's possible states.
  */
-private val resourceMap = listOf(
-    R.drawable.dice_1,
-    R.drawable.dice_2,
-    R.drawable.dice_3,
-    R.drawable.dice_4,
-    R.drawable.dice_5,
-    R.drawable.dice_6
-)
+interface DiceRollerScreenState {
+    data class Idle(val dice: Dice) : DiceRollerScreenState
+    data object Rolling : DiceRollerScreenState
 
-/**
- * Gets the resource id of the dice image used to display a dice with the default range of 1 to 6.
- */
-fun Dice.toDiceResource() = resourceMap[value - 1]
-
-/**
- * Gets the test tag of the dice image used to display a dice with the default range of 1 to 6.
- */
-fun Dice.toTestTag() = "dice_$value"
+    companion object {
+        val Saver = Saver<MutableState<DiceRollerScreenState>, List<Int>>(
+            save = { toSave ->
+                toSave.value.let { state ->
+                    if (state is Idle) listOf(
+                        state.dice.range.first,
+                        state.dice.range.last,
+                        state.dice.value
+                    )
+                    else emptyList()
+                }
+            },
+            restore = { saved ->
+                if (saved.isNotEmpty())
+                    mutableStateOf(Idle(Dice(range = saved[0]..saved[1], value = saved[2])))
+                else
+                    mutableStateOf(Rolling)
+            }
+        )
+    }
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

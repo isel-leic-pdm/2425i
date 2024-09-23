@@ -20,19 +20,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        Log.v(TAG, "onStart")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.v(TAG, "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.v(TAG, "onDestroy")
-    }
 }
