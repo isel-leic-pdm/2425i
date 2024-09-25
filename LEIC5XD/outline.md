@@ -70,6 +70,7 @@ buttons to decrease and increase that count.
   * Preserving UI state
     * `rememberSaveable`
     * The `Parcelable` contract and automatic implementation with `@Parcelize`
+    * Compose's `Saver` contract
   * Side effects: `LaunchedEffect`
 * Architecting the UI: introduction
   * Suporting multiple screen orientations: `LocalConfiguration.current.orientation` 
@@ -83,6 +84,7 @@ buttons to decrease and increase that count.
 * [Architecting your Compose UI](https://developer.android.com/jetpack/compose/architecture)
 
 #### Video lecture (in Portuguese):
+* [Android @ ISEL - 2024 - (03-A) Estado de apresentação com Compose](https://www.youtube.com/live/hyO4i8zM4mE?si=wHxervtnenn6j-FM) 
 * Android @ ISEL - 2024 - (03-A) Estado de apresentação com Compose __(coming soon)__
 
 ### Practical Class

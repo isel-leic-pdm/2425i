@@ -21,6 +21,7 @@ class DiceRollerScreenTests {
         }
 
         composeTestRule.onNodeWithTag(IDLE_VIEW_TAG).assertExists()
+        composeTestRule.onNodeWithTag(ROLLING_VIEW_TAG).assertDoesNotExist()
     }
 
     @Test
@@ -31,6 +32,7 @@ class DiceRollerScreenTests {
 
         composeTestRule.onNodeWithTag(ROLL_IT_BUTTON_TAG).performClick()
         composeTestRule.onNodeWithTag(ROLLING_VIEW_TAG).assertExists()
+        composeTestRule.onNodeWithTag(IDLE_VIEW_TAG).assertDoesNotExist()
     }
 
     @Test
@@ -41,7 +43,7 @@ class DiceRollerScreenTests {
         }
 
         composeTestRule.onNodeWithTag(ROLL_IT_BUTTON_TAG).performClick()
-        composeTestRule.mainClock.advanceTimeBy(3000L)
+        composeTestRule.mainClock.advanceTimeBy(milliseconds = ROLLING_TIME_MS + 1000)
         composeTestRule.onNodeWithTag(IDLE_VIEW_TAG).assertExists()
     }
 }

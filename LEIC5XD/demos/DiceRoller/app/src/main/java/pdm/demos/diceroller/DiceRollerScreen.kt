@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 import pdm.demos.diceroller.ui.theme.DiceRollerTheme
 
+const val ROLLING_TIME_MS = 2000L
+
 /**
  * The screen implementation, which hosts the screen's state machine.
  */
@@ -37,7 +39,7 @@ fun DiceRollerScreen() {
         val currentState = state
         LaunchedEffect(currentState) {
             if (currentState is DiceRollerScreenState.Rolling) {
-                delay(2000)
+                delay(timeMillis = ROLLING_TIME_MS)
                 state = DiceRollerScreenState.Idle(roll())
             }
         }
@@ -57,7 +59,7 @@ fun DiceRollerScreen() {
 /**
  * The screen's possible states.
  */
-interface DiceRollerScreenState {
+sealed interface DiceRollerScreenState {
     data class Idle(val dice: Dice) : DiceRollerScreenState
     data object Rolling : DiceRollerScreenState
 
