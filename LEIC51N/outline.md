@@ -59,3 +59,43 @@
 ### Bonus Content
 * Lecture video (in Portuguese): Revisiting Polymorphism and Inheritance _(coming soon)_
 
+## Week 3 - 23/09/2024 to 29/09/2024 _(preview)_
+### Subject: Building the UI with Jetpack Compose - State management
+#### Topic breakdown:
+* The Activity component: continued
+  * Basic lifecycle, revisited: behavior on configuration changes
+  * Implications of reconfigurations on the UI state
+* Jetpack Compose, continued
+  * State hoisting: lifting the state to the parent composable
+  * Preserving UI state
+    * `rememberSaveable`
+    * The `Parcelable` contract and automatic implementation with `@Parcelize`
+    * Compose's `Saver` contract
+  * Side effects: `LaunchedEffect`
+* Architecting the UI: introduction
+  * Suporting multiple screen orientations: `LocalConfiguration.current.orientation` 
+  * Implementing the screen as a state machine
+
+### For reference:
+* [State hoisting](https://developer.android.com/jetpack/compose/state#state-hoisting)
+* [Save UI state in Jetpack Compose](https://developer.android.com/develop/ui/compose/state-saving)
+* [Parcelable implementation generator](https://developer.android.com/kotlin/parcelize)
+* [Side-effects in Compose](https://developer.android.com/develop/ui/compose/side-effects)
+* [Architecting your Compose UI](https://developer.android.com/jetpack/compose/architecture)
+* [Test your Compose layout](https://developer.android.com/develop/ui/compose/testing)
+
+
+#### Video lecture (in Portuguese):
+* [Android @ ISEL - 2024 - (03-A) Estado de apresentação com Compose](https://www.youtube.com/live/hyO4i8zM4mE?si=wHxervtnenn6j-FM) 
+* Android @ ISEL - 2024 - (03-B) Estado de apresentação com Compose _(coming soon)_
+
+### Practical Class
+* Goal: Architecting a simple UI with Jetpack Compose
+* Challenge: Add to the CrowdTally application the ability to configure the maximum capacity of the venue. The application should display the current count and the maximum capacity of the 
+venue's occupation. The application should support screen rotation, preserving the current count and the maximum capacity.
+* Challenge 2: Change your solution in order to add unit tests 
+* Challenge 3: Change your solution in order to add Instrumentation tests to your solution
+
+### Bonus Content
+* Lecture video (in Portuguese): Latency numbers every programmer should know _(coming soon)_
+
