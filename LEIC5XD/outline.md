@@ -85,13 +85,13 @@ buttons to decrease and increase that count.
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (03-A) Estado de apresentação com Compose](https://www.youtube.com/live/hyO4i8zM4mE?si=wHxervtnenn6j-FM) 
-* Android @ ISEL - 2024 - (03-A) Estado de apresentação com Compose __(coming soon)__
+* Android @ ISEL - 2024 - (03-B) Estado de apresentação com Compose _(coming soon)_
 
 ### Practical Class
 * Goal: Architecting a simple UI with Jetpack Compose
 * Challenge: Add to the CrowdTally application the ability to configure the maximum capacity of the venue. The application should display the current count and the maximum capacity of the 
 venue's occupation. The application should support screen rotation, preserving the current count and the maximum capacity.
-* Challenge solution: CrowdTally v0.2 live coding session video __(coming soon)__
+* Challenge solution: CrowdTally v0.2 live coding session video _(coming soon)_
 
 ### Bonus Content
-* Lecture video (in Portuguese): Latency numbers every programmer should know __(coming soon)__
+* Lecture video (in Portuguese): Latency numbers every programmer should know _(coming soon)_
