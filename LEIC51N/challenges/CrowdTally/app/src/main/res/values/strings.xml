@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CrowdTally</string>
+    <string name="new_max_crowd">New Max Crowd</string>
+    <string name="commit">Commit</string>
 </resources>
