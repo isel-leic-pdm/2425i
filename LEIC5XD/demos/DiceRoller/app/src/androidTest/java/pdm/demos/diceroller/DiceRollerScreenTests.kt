@@ -36,7 +36,7 @@ class DiceRollerScreenTests {
     }
 
     @Test
-    fun when_the_rolling_time_ends_the_screen_changes_to_the_idle_state() {
+    fun when_the_rolling_time_ends_the_screen_changes_back_to_the_idle_state() {
         composeTestRule.mainClock.autoAdvance = false
         composeTestRule.setContent {
             DiceRollerScreen()
