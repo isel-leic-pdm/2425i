@@ -1,8 +1,5 @@
 package pdm.demos.crowdtally
 
-import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsNotEnabled
-import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -18,53 +15,33 @@ class CrowdTallyScreenTests {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun counter_value_is_displayed() {
-        val counter = CrowdCounter(value = 4, capacity = 10)
+    fun initially_the_screen_displays_the_counting_view() {
         composeTestRule.setContent {
-            CrowdTallyScreen(initialCounter = counter)
+            CrowdTallyScreen()
         }
 
-        composeTestRule.onNodeWithTag(COUNTER_VIEW_TAG).assertTextEquals(counter.value.toString())
+        composeTestRule.onNodeWithTag(COUNTING_VIEW_TAG).assertExists()
     }
 
     @Test
-    fun increment_button_increments_value() {
-        val counter = CrowdCounter(value = 4, capacity = 10)
+    fun when_the_configure_button_is_clicked_the_screen_displays_the_configuration_view() {
         composeTestRule.setContent {
-            CrowdTallyScreen(initialCounter = counter)
+            CrowdTallyScreen()
         }
-        val expectedDisplayedCounter = counter.inc().value.toString()
 
-        composeTestRule.onNodeWithTag(INCREMENT_BUTTON_TAG).performClick()
-        composeTestRule.onNodeWithTag(COUNTER_VIEW_TAG).assertTextEquals(expectedDisplayedCounter)
+        composeTestRule.onNodeWithTag(CONFIGURE_BUTTON_TAG).performClick()
+        composeTestRule.onNodeWithTag(CONFIGURE_VIEW_TAG).assertExists()
     }
 
     @Test
-    fun decrement_button_decrements_value() {
-        val counter = CrowdCounter(value = 4, capacity = 10)
+    fun when_the_save_button_is_clicked_the_screen_displays_the_counting_view() {
         composeTestRule.setContent {
-            CrowdTallyScreen(initialCounter = counter)
+            CrowdTallyScreen()
         }
-        val expectedDisplayedCounter = counter.dec().value.toString()
 
-        composeTestRule.onNodeWithTag(DECREMENT_BUTTON_TAG).performClick()
-        composeTestRule.onNodeWithTag(COUNTER_VIEW_TAG).assertTextEquals(expectedDisplayedCounter)
-    }
+        composeTestRule.onNodeWithTag(CONFIGURE_BUTTON_TAG).performClick()
+        composeTestRule.onNodeWithTag(SAVE_BUTTON_TAG).performClick()
+        composeTestRule.onNodeWithTag(COUNTING_VIEW_TAG).assertExists()
 
-    @Test
-    fun when_at_maximum_increment_button_is_disabled_and_decrement_button_is_enabled() {
-        composeTestRule.setContent {
-            CrowdTallyScreen(initialCounter = CrowdCounter(value = 10, capacity = 10))
-        }
-        composeTestRule.onNodeWithTag(INCREMENT_BUTTON_TAG).assertIsNotEnabled()
-        composeTestRule.onNodeWithTag(DECREMENT_BUTTON_TAG).assertIsEnabled()
-    }
-
-    @Test
-    fun when_at_minimum_decrement_button_is_disabled_and_increment_button_is_enabled() {
-        composeTestRule.setContent {
-            CrowdTallyScreen(initialCounter = CrowdCounter(value = 0, capacity = 10))
-        }
-        composeTestRule.onNodeWithTag(DECREMENT_BUTTON_TAG).assertIsNotEnabled()
     }
 }

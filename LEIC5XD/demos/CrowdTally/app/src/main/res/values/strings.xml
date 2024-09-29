@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">CrowdTally</string>
+    <string name="app_name">Crowd Tally</string>
+    <string name="save_button_text">Save</string>
+    <string name="cancel_button_text">Cancel</string>
 </resources>
