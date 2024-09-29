@@ -59,7 +59,7 @@ buttons to decrease and increase that count.
 ### Bonus Content
 * [Lecture video (in Portuguese): Revisiting Polymorphism and Inheritance](https://youtu.be/m3b6mTpMecc?si=o-If3d2CTfxbXOqb)
 
-## Week 3 - 23/09/2024 to 29/09/2024 _(preview)_
+## Week 3 - 23/09/2024 to 29/09/2024
 ### Subject: Building the UI with Jetpack Compose - State management
 #### Topic breakdown:
 * The Activity component: continued
@@ -85,13 +85,40 @@ buttons to decrease and increase that count.
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (03-A) Estado de apresentação com Compose](https://www.youtube.com/live/hyO4i8zM4mE?si=wHxervtnenn6j-FM) 
-* Android @ ISEL - 2024 - (03-B) Estado de apresentação com Compose _(coming soon)_
+* [Android @ ISEL - 2024 - (03-B) Estado de apresentação com Compose](https://www.youtube.com/live/WQan-xlawWc?si=agxi6fRAmZyEzkWj)
 
 ### Practical Class
 * Goal: Architecting a simple UI with Jetpack Compose
 * Challenge: Add to the CrowdTally application the ability to configure the maximum capacity of the venue. The application should display the current count and the maximum capacity of the 
 venue's occupation. The application should support screen rotation, preserving the current count and the maximum capacity.
-* Challenge solution: CrowdTally v0.2 live coding session video _(coming soon)_
+* [Challenge solution: CrowdTally v0.2 live coding session video](https://www.youtube.com/live/L3HJkK8HuvE?si=_EFaXKjNacVoaYAX)
 
 ### Bonus Content
-* Lecture video (in Portuguese): Latency numbers every programmer should know _(coming soon)_
+* [Lecture video (in Portuguese): Latency numbers every programmer should know](https://www.youtube.com/live/aQxFRASkybI?si=s2hcP4KXamCYtoz9)
+* [Latency Numbers Every Programmer Should Know](https://gist.github.com/jboner/2841832)
+* [Latency Numbers Every Programmer Should Know (interactive)](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
+
+## Week 4 - 30/09/2024 to 06/10/2024 _(preview)_
+### Subject: Navigating between screens
+#### Topic breakdown:
+* UX: navigating between activities
+  * User task and back stack
+  * Intents: explicit and implicit
+* The Activity component: continued
+  * Basic lifecycle, revisited: behavior on navigation
+  
+### For reference:
+* [Tasks and Back Stack](https://developer.android.com/guide/components/activities/tasks-and-back-stack)
+* [Intents and intent filters](https://developer.android.com/guide/components/intents-filters)
+  * [Sending the user to another app](https://developer.android.com/training/basics/intents/sending)
+  * [Common Intents](https://developer.android.com/guide/components/intents-common)
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (04-A) Navegação entre ecrãs _(coming soon)_
+
+### Practical Class
+* Main Goal: Complete last week's challenge
+* Secondary Goal: Continue to exercise architecting a UI with Jetpack Compose
+* Challenge 1: Implement the About screen for the course's project
+* Challenge 2: Implement the the StopWatch application. The application should have a screen that displays a timer with a start/stop button and a reset button. 
+The timer should be updated every second and its state should be preserved on screen rotation.
