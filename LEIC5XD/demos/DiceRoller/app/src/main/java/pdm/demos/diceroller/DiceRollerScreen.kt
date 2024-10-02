@@ -2,7 +2,11 @@ package pdm.demos.diceroller
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -27,9 +31,18 @@ const val ROLLING_TIME_MS = 2000L
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DiceRollerScreen() {
+fun DiceRollerScreen(onAboutNavigate: () -> Unit = {}) {
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = stringResource(R.string.app_name)) }) },
+        topBar = {
+            TopAppBar(
+                title = { Text(text = stringResource(R.string.app_name)) },
+                actions = {
+                    IconButton(onClick = { onAboutNavigate() }) {
+                        Icon(Icons.Outlined.Info, contentDescription = "")
+                    }
+                }
+            )
+        },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         var state: DiceRollerScreenState by rememberSaveable(saver = DiceRollerScreenState.Saver) {

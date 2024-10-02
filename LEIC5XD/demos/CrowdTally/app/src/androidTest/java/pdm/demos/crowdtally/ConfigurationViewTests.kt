@@ -56,7 +56,8 @@ class ConfigurationViewTests {
         composeTestRule.setContent {
             ConfigurationView(
                 CrowdTallyScreenState.Configuration(initialCapacity = 1000),
-                onSaveIntent = { newCapacity = it })
+                onSaveIntent = { newCapacity = it }
+            )
         }
 
         composeTestRule.onNodeWithTag(CAPACITY_TEXT_FIELD_TAG)

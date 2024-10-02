@@ -42,6 +42,5 @@ class CrowdTallyScreenTests {
         composeTestRule.onNodeWithTag(CONFIGURE_BUTTON_TAG).performClick()
         composeTestRule.onNodeWithTag(SAVE_BUTTON_TAG).performClick()
         composeTestRule.onNodeWithTag(COUNTING_VIEW_TAG).assertExists()
-
     }
 }

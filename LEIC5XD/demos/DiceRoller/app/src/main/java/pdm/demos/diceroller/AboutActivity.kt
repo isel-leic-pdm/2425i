@@ -5,35 +5,33 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import pdm.demos.diceroller.ui.theme.DiceRollerTheme
 
-const val TAG = "DICE_ROLLER"
-
-class MainActivity : ComponentActivity() {
-
-    private val navigateToAboutIntent: Intent by lazy {
-        Intent(this, AboutActivity::class.java)
-    }
+class AboutActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.v(TAG, "MainActivity.onCreate")
-        enableEdgeToEdge()
+        Log.v(TAG, "AboutActivity.onCreate")
         setContent {
             DiceRollerTheme {
-                DiceRollerScreen(onAboutNavigate = { startActivity(navigateToAboutIntent) })
+                AboutScreen(onNavigateBack = { finish() })
             }
         }
     }
 
     override fun onStart() {
         super.onStart()
-        Log.v(TAG, "MainActivity.onStart")
+        Log.v(TAG, "AboutActivity.onStart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.v(TAG, "MainActivity.onStop")
+        Log.v(TAG, "AboutActivity..onStop")
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.v(TAG, "AboutActivity.onDestroy")
+    }
+
 }
