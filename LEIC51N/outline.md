@@ -99,3 +99,31 @@ venue's occupation. The application should support screen rotation, preserving t
 ### Bonus Content
 * Lecture video (in Portuguese): Latency numbers every programmer should know _(coming soon)_
 
+## Week 4 - 30/09/2024 to 06/10/2024 _(preview)_
+### Subject: Navigating between screens
+#### Topic breakdown:
+* UX: navigating between activities
+  * User task and back stack
+  * Intents: explicit and implicit
+* The Activity component: continued
+  * Basic lifecycle, revisited: behavior on navigation
+  
+### For reference:
+* [Tasks and Back Stack](https://developer.android.com/guide/components/activities/tasks-and-back-stack)
+* [Intents and intent filters](https://developer.android.com/guide/components/intents-filters)
+  * [Sending the user to another app](https://developer.android.com/training/basics/intents/sending)
+  * [Common Intents](https://developer.android.com/guide/components/intents-common)
+
+#### Video lecture (in Portuguese):
+* [Android @ ISEL - 2024 - (04-A) Navegação entre ecrãs](https://www.youtube.com/live/kCq6f9dFX90?si=uQOTj3rNFwj3wnqZ)
+
+### Practical Class
+* Main Goal: Complete last week's challenge
+* Secondary Goal: Continue to exercise architecting a UI with Jetpack Compose
+* Challenge 1: Implement the About screen for the course's project
+* Challenge 2: Implement the the StopWatch application. The application should have a screen that displays a timer with a start/stop button and a reset button. 
+The timer should be updated every second and its state should be preserved on screen rotation.
+
+### Bonus Content
+* Mutability: Necessity or Habit? [(Talk at Kotlin Lisbon Meetup)](https://www.meetup.com/kotlin-lisboa/events/301917980/?eventOrigin=group_upcoming_events)
+  * [Watch it here](https://www.youtube.com/@ProfPauloPereira)

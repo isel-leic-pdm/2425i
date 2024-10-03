@@ -1,4 +1,4 @@
-package com.example.diceroll.Main
+package com.example.diceroll.screens.Main
 
 import android.os.Parcelable
 import android.util.Log
