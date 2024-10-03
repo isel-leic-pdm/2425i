@@ -1,4 +1,4 @@
-package com.example.diceroll.screens.Main
+package com.example.diceroll.screens.main
 
 import android.util.Log
 import androidx.compose.foundation.Image

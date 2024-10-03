@@ -1,4 +1,4 @@
 package com.example.diceroll.screens
 
 
-const val TAG = "DiceRoll"
+const val TAG = "DICE_ROLL"

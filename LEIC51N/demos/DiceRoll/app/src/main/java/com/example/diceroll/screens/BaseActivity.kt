@@ -6,23 +6,25 @@ import androidx.activity.ComponentActivity
 
 abstract class BaseAppActivity : ComponentActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    private val activityName by lazy { this.javaClass.simpleName }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.v(TAG, "$this.javaClass.simpleName onCreate")
+        Log.v(TAG, "$activityName: onCreate")
     }
+
     override fun onStart() {
         super.onStart()
-        Log.v(TAG, "$this.javaClass.simpleName onStart")
+        Log.v(TAG, "$activityName: onStart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.v(TAG, "$this.javaClass.simpleName onStop")
+        Log.v(TAG, "$activityName: onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.v(TAG, "$this.javaClass.simpleName onDestroy")
+        Log.v(TAG, "$activityName: onDestroy")
     }
 }

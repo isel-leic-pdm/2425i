@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DiceRoll</string>
     <string name="roll_it">Roll it!</string>
+    <string name="title_activity_ablu">Ablu</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_that_receives_extras">ActivityThatReceivesExtras</string>
 </resources>
