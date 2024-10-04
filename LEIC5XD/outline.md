@@ -98,7 +98,7 @@ venue's occupation. The application should support screen rotation, preserving t
 * [Latency Numbers Every Programmer Should Know](https://gist.github.com/jboner/2841832)
 * [Latency Numbers Every Programmer Should Know (interactive)](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
 
-## Week 4 - 30/09/2024 to 06/10/2024 _(preview)_
+## Week 4 - 30/09/2024 to 06/10/2024
 ### Subject: Navigating between screens
 #### Topic breakdown:
 * UX: navigating between activities
@@ -114,7 +114,7 @@ venue's occupation. The application should support screen rotation, preserving t
   * [Common Intents](https://developer.android.com/guide/components/intents-common)
 
 #### Video lecture (in Portuguese):
-* [Android @ ISEL - 2024 - (04-A) Navegação entre ecrãs](https://www.youtube.com/live/kCq6f9dFX90?si=uQOTj3rNFwj3wnqZ)
+* [Android @ ISEL - 2024 - (04) Navegação entre ecrãs](https://www.youtube.com/live/kCq6f9dFX90?si=Z_-KqLYsyoi-sC2G)
 
 ### Practical Class
 * Main Goal: Complete last week's challenge
@@ -125,4 +125,4 @@ The timer should be updated every second and its state should be preserved on sc
 
 ### Bonus Content
 * Mutability: Necessity or Habit? [(Talk at Kotlin Lisbon Meetup)](https://www.meetup.com/kotlin-lisboa/events/301917980/?eventOrigin=group_upcoming_events)
-  * [Watch it here](https://www.youtube.com/@ProfPauloPereira)
+  * [Watch it here](https://www.youtube.com/live/-sJhepOzSCc?si=OE6c0JwbRRxpnikJ)
