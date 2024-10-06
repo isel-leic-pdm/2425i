@@ -126,3 +126,40 @@ The timer should be updated every second and its state should be preserved on sc
 ### Bonus Content
 * Mutability: Necessity or Habit? [(Talk at Kotlin Lisbon Meetup)](https://www.meetup.com/kotlin-lisboa/events/301917980/?eventOrigin=group_upcoming_events)
   * [Watch it here](https://www.youtube.com/live/-sJhepOzSCc?si=OE6c0JwbRRxpnikJ)
+
+## Week 5 - 07/10/2024 to 13/10/2024
+### Subject: Beyound the UI - ViewModel
+#### Topic breakdown:
+* Android's concurrency model, revisited
+  * Execution on event handlers
+  * `rememberCoroutineScope`
+* The `ViewModel` framework component
+  * Purpose and aplicability
+  * Lifecycle and relation with the Activity component
+    * `ViewModelStore` and `ViewModelStoreOwner`
+  * The `ViewModel` as the execution host: `viewModelScope`
+* Design considerations:
+  * The ViewModel as:
+    * the facade to the domain
+    * the container of aplication state relevant to the screen
+    * the host of the use case execution
+  * The view model as the actual host of the screen's state machine
+
+### For reference:
+* [ViewModel Overview](https://developer.android.com/topic/libraries/architecture/viewmodel)
+  * [View Model lifecycle](https://developer.android.com/topic/libraries/architecture/viewmodel#lifecycle)
+  * [Use Kotlin Coroutines with lifecycle-aware components](https://developer.android.com/topic/libraries/architecture/coroutines#viewmodelscope)
+* [ViewModelStore](https://developer.android.com/reference/androidx/lifecycle/ViewModelStore)
+* [ViewModelStoreOwner](https://developer.android.com/reference/androidx/lifecycle/ViewModelStoreOwner)
+
+### Practical Class
+* Goal: Work on the course's project. 
+* Recomended approach: You may already implement the aplication's screens and navigation between them. You may also start working on identifying wich screen's will require a view model and start drafting the required services's interfaces. These services may, for the time being, be implemented as fakes. Completing theses tasks will give you a significant head start on the project's development.
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (05-A) ViewModel _(coming soon)_
+* Android @ ISEL - 2024 - (05-B) Sessão de codificação ao vivo _(coming soon)_
+
+### Bonus Content
+* Lecture video (in Portuguese): Revisiting Kotlin's concurrency model _(coming soon)_
+
