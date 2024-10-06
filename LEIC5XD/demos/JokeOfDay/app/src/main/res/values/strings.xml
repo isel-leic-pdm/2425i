@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Joke Of Day</string>
+
+    <string name="error_api_title">Error accessing the server</string>
+    <string name="error_retry_button_text">Retry</string>
+    <string name="error_could_not_reach_api">Please check if the device is connected to the internet</string>
+</resources>
