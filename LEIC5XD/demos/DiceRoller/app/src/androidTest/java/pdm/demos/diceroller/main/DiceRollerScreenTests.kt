@@ -1,4 +1,4 @@
-package pdm.demos.diceroller
+package pdm.demos.diceroller.main
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -45,5 +45,16 @@ class DiceRollerScreenTests {
         composeTestRule.onNodeWithTag(ROLL_IT_BUTTON_TAG).performClick()
         composeTestRule.mainClock.advanceTimeBy(milliseconds = ROLLING_TIME_MS + 1000)
         composeTestRule.onNodeWithTag(IDLE_VIEW_TAG).assertExists()
+    }
+
+    @Test
+    fun when_the_info_button_is_clicked_the_onAboutNavigate_callback_is_called() {
+        var aboutNavigateCalled = false
+        composeTestRule.setContent {
+            DiceRollerScreen(onAboutNavigate = { aboutNavigateCalled = true })
+        }
+
+        composeTestRule.onNodeWithTag(INFO_BUTTON_TAG).performClick()
+        assert(aboutNavigateCalled)
     }
 }

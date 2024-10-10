@@ -1,4 +1,4 @@
-package pdm.demos.diceroller
+package pdm.demos.diceroller.main
 
 /**
  * The main domain element for a dice rolling application: the dice itself. Instances are immutable.

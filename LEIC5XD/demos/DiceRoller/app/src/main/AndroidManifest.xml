@@ -13,7 +13,7 @@
         android:theme="@style/Theme.DiceRoller"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".main.DiceRollerActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DiceRoller">
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".about.AboutActivity" />
     </application>
 
 </manifest>

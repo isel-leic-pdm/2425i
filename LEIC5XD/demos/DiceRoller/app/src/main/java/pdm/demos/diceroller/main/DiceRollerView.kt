@@ -1,8 +1,10 @@
-package pdm.demos.diceroller
+package pdm.demos.diceroller.main
 
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -11,11 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
+import pdm.demos.diceroller.R
 
 // The tags used to identify the views in the tests.
 const val IDLE_VIEW_TAG = "idle_view"
@@ -36,15 +41,13 @@ fun DiceRollerIdleView(
     onDiceRollIntent: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround,
-        modifier = modifier.fillMaxSize().testTag(IDLE_VIEW_TAG)
-    ) {
+    ScreenOrientationPlaceholder(modifier.testTag(IDLE_VIEW_TAG)) {
         Image(
             painter = painterResource(state.dice.toDiceResource()),
             contentDescription = "",
-            modifier = Modifier.size(200.dp).testTag(state.dice.toTestTag())
+            modifier = Modifier
+                .size(200.dp)
+                .testTag(state.dice.toTestTag())
         )
         Button(onClick = { onDiceRollIntent() }, modifier = Modifier.testTag(ROLL_IT_BUTTON_TAG)) {
             Text(text = stringResource(R.string.roll_button_text))
@@ -54,14 +57,42 @@ fun DiceRollerIdleView(
 
 @Composable
 fun DiceRollerRollingView(modifier: Modifier = Modifier) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround,
-        modifier = modifier.fillMaxSize().testTag(ROLLING_VIEW_TAG)
-    ) {
-        CircularProgressIndicator(modifier = Modifier.size(200.dp).testTag(PROGRESS_INDICATOR_TAG))
+    ScreenOrientationPlaceholder(modifier.testTag(ROLLING_VIEW_TAG)) {
+        CircularProgressIndicator(
+            modifier = Modifier
+                .size(200.dp)
+                .testTag(PROGRESS_INDICATOR_TAG)
+        )
         Button(onClick = {}, enabled = false, modifier = Modifier.testTag(ROLL_IT_BUTTON_TAG)) {
             Text(text = stringResource(R.string.roll_button_text))
+        }
+    }
+}
+
+@Composable
+fun ScreenOrientationPlaceholder(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+    val orientation = LocalConfiguration.current.orientation
+    when (orientation) {
+        ORIENTATION_PORTRAIT -> {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround,
+                modifier = modifier.fillMaxSize()
+            ) {
+                content()
+            }
+        }
+
+        else -> {
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = modifier
+                    .fillMaxSize()
+                    .testTag(ROLLING_VIEW_TAG)
+            ) {
+                content()
+            }
         }
     }
 }
@@ -83,12 +114,14 @@ private val resourceMap = listOf(
  */
 fun Dice.toDiceResource() = resourceMap[value - 1]
 
+@PreviewScreenSizes
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DiceRollerIdleViewPreview() {
     DiceRollerIdleView(state = DiceRollerScreenState.Idle(Dice()), onDiceRollIntent = {})
 }
 
+@PreviewScreenSizes
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DiceRollerRollingViewPreview() {

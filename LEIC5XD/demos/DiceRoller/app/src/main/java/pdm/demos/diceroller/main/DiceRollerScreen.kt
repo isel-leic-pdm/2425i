@@ -1,4 +1,4 @@
-package pdm.demos.diceroller
+package pdm.demos.diceroller.main
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,12 +19,15 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
+import pdm.demos.diceroller.R
 import pdm.demos.diceroller.ui.theme.DiceRollerTheme
 
 const val ROLLING_TIME_MS = 2000L
+const val INFO_BUTTON_TAG = "info_button"
 
 /**
  * The screen implementation, which hosts the screen's state machine.
@@ -37,7 +40,10 @@ fun DiceRollerScreen(onAboutNavigate: () -> Unit = {}) {
             TopAppBar(
                 title = { Text(text = stringResource(R.string.app_name)) },
                 actions = {
-                    IconButton(onClick = { onAboutNavigate() }) {
+                    IconButton(
+                        onClick = { onAboutNavigate() },
+                        modifier = Modifier.testTag(INFO_BUTTON_TAG)
+                    ) {
                         Icon(Icons.Outlined.Info, contentDescription = "")
                     }
                 }

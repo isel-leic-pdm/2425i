@@ -16,7 +16,46 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-165979273">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_3a_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="26376657">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_3a_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="745914587">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_3a_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1013003208">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
@@ -50,6 +89,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_3a_API_34" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="Xiaomi M2006C3LVG" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

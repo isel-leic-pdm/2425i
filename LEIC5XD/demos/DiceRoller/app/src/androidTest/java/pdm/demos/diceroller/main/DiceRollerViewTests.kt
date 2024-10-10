@@ -1,4 +1,4 @@
-package pdm.demos.diceroller
+package pdm.demos.diceroller.main
 
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled

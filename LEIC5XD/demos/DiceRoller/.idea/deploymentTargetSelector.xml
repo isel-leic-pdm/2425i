@@ -16,13 +16,16 @@
       <SelectionState runConfigName="DiceRollerScreenTests">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DiceRollerViewTests">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="Tests in 'pdm.demos.diceroller'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="when_the_rolling_time_ends_the_screen_changes_to_the_idle_state()">
+      <SelectionState runConfigName="DiceRollerActivityTests">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="AboutActivityTests">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="when_the_back_button_is_clicked_the_activity_is_finished()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

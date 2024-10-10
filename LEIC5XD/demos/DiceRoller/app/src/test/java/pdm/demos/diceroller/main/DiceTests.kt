@@ -1,4 +1,4 @@
-package pdm.demos.diceroller
+package pdm.demos.diceroller.main
 
 import org.junit.Test
 import org.junit.Assert.*
