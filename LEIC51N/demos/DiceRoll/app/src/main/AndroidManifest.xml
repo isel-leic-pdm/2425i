@@ -18,7 +18,7 @@
             android:label="@string/title_activity_that_receives_extras"
             android:theme="@style/Theme.DiceRoll" />
         <activity
-            android:name=".about.AboutActivity"
+            android:name=".screens.about.AboutActivity"
             android:exported="true"
             android:label="@string/title_activity_about"
             android:theme="@style/Theme.DiceRoll">

@@ -1,4 +1,4 @@
-package com.example.diceroll.about
+package com.example.diceroll.screens.about
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.diceroll.screens.BaseAppActivity
+import com.example.diceroll.screens.components.AppTopBar
+import com.example.diceroll.screens.components.NavigationActions
 import com.example.diceroll.ui.theme.DiceRollTheme
 
 class AboutActivity : BaseAppActivity() {
@@ -32,14 +34,19 @@ class AboutActivity : BaseAppActivity() {
         enableEdgeToEdge()
         setContent {
             DiceRollTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        AppTopBar(
+                            navActions = NavigationActions(
+                                onBackAction = { this.finish() },
+                            )
+                        )
+                    }
+
+                ) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
-                        Text("test")
-                        Button(onClick = {
-                            this@AboutActivity.finish()
-                        }) {
-                            Text("Back")
-                        }
+                        Text("About activity")
+
                     }
                 }
             }
@@ -48,7 +55,6 @@ class AboutActivity : BaseAppActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-
 
 
     }
