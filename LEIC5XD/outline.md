@@ -158,4 +158,4 @@ The timer should be updated every second and its state should be preserved on sc
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (05-A) ViewModel](https://youtube.com/live/AsTpSVg5nMU?feature=share)
-* Android @ ISEL - 2024 - (05-B) Sessão de codificação ao vivo _(coming soon)_
+* [Android @ ISEL - 2024 - (05-B) Sessão de codificação ao vivo](https://www.youtube.com/live/xEafTGgGN5Q?si=3UlJJhBDnMTUyl19)
