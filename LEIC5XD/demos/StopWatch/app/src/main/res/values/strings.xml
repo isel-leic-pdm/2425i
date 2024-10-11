@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">StopWatch</string>
+    <string name="minutes_label">minutes</string>
+    <string name="seconds_label">seconds</string>
+    <string name="deciseconds_label">deciseconds</string>
+    <string name="start_button_label">Start</string>
+    <string name="stop_button_label">Stop</string>
+    <string name="reset_button_label">Reset</string>
+</resources>
