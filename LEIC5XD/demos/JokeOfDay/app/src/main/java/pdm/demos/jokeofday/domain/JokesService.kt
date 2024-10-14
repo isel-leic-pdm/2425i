@@ -9,7 +9,7 @@ import kotlin.random.Random
 /**
  * Contract of the service that provides jokes.
  */
-interface JokesService {
+fun interface JokesService {
     /**
      * Fetches a joke.
      * @return The fetched joke.

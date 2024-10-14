@@ -17,7 +17,8 @@ import androidx.compose.ui.unit.dp
 import pdm.demos.jokeofday.ui.theme.JokeOfDayIcons
 import pdm.demos.jokeofday.ui.theme.JokeOfDayTheme
 
-const val ErrorAlertTestTag = "ErrorAlertTestTag"
+const val ERROR_ALERT_TAG = "ErrorAlertTestTag"
+const val ERROR_ALERT_DISMISS_BUTTON_TAG = "ErrorAlertDismissButtonTestTag"
 
 @Composable
 fun ErrorAlert(
@@ -46,7 +47,8 @@ private fun ErrorAlertImpl(
         confirmButton = {
             OutlinedButton(
                 border = BorderStroke(0.dp, Color.Unspecified),
-                onClick = onDismiss
+                onClick = onDismiss,
+                modifier = Modifier.testTag(ERROR_ALERT_DISMISS_BUTTON_TAG)
             ) {
                 Text(text = buttonText)
             }
@@ -59,7 +61,7 @@ private fun ErrorAlertImpl(
                 contentDescription = "Warning"
             )
         },
-        modifier = Modifier.testTag(ErrorAlertTestTag)
+        modifier = Modifier.testTag(ERROR_ALERT_TAG)
     )
 }
 

@@ -1,7 +1,9 @@
-package pdm.demos.jokeofday
+package pdm.demos.jokeofday.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import pdm.demos.jokeofday.R
+import pdm.demos.jokeofday.domain.FakeJokesService
 import pdm.demos.jokeofday.ui.common.ErrorAlert
 import pdm.demos.jokeofday.ui.theme.JokeOfDayTheme
 
@@ -37,5 +39,5 @@ fun JokeScreen(viewModel: JokeScreenViewModel) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun JokeScreenPreview() {
-    JokeScreen(viewModel = JokeScreenViewModel())
+    JokeScreen(viewModel = JokeScreenViewModel(FakeJokesService()))
 }
