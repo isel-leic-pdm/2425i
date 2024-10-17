@@ -163,3 +163,28 @@ The timer should be updated every second and its state should be preserved on sc
 * Android @ ISEL - 2024 - (05-B) Sessão de codificação ao vivo _(coming soon)_
  
   
+## Week 6 - 14/10/2024 to 20/10/2024
+### Subject: Beyond the UI - Manual Dependency Injection
+#### Topic breakdown:
+* ViewModel, revisited
+  * Instantiating using a custom factory, to enable parametric construction
+  * Automated testing of the ViewModel
+* Application
+  * Motivation and lifecycle
+  * Usage for dependency resolution (as a Service Locator)
+
+### For reference:
+* [Application](https://developer.android.com/reference/android/app/Application)
+* [Manual dependency injection](https://developer.android.com/training/dependency-injection/manual)
+* [Testing Coroutines on Android](https://developer.android.com/kotlin/coroutines/test)
+
+### Practical Class
+* Goal: Work on the course's project. 
+* Recomended approach: You may already implement the aplication's screens and navigation between them. You may also start working on identifying wich screen's will require a view model and start drafting the required services's interfaces. These services may, for the time being, be implemented as fakes. Completing theses tasks will give you a significant head start on the project's development.
+
+#### Video lecture (in Portuguese):
+* [Android @ ISEL - 2024 - (06-A) Injeccção manual de dependências](https://www.youtube.com/live/GcJ3KwN_sOE?si=dyrVLyHeshuABZhr)
+* Android @ ISEL - 2024 - (06-B) Sessão de codificação ao vivo _(coming soon)_
+
+### Bonus Content
+* Lecture video (in Portuguese): Revisiting Kotlin's concurrency model _(coming soon)_
