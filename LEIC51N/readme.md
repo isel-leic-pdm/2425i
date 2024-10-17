@@ -177,6 +177,7 @@ The timer should be updated every second and its state should be preserved on sc
 * [Application](https://developer.android.com/reference/android/app/Application)
 * [Manual dependency injection](https://developer.android.com/training/dependency-injection/manual)
 * [Testing Coroutines on Android](https://developer.android.com/kotlin/coroutines/test)
+* [Saved State module for ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate)
 
 ### Practical Class
 * Goal: Work on the course's project. 

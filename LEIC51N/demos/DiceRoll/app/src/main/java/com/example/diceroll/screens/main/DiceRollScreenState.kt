@@ -10,5 +10,6 @@ data class DiceRollScreenState(
 ) : Parcelable {
     companion object {
         val empty = DiceRollScreenState(-1, false)
+        val error = DiceRollScreenState(-0xdead, false)
     }
 }
