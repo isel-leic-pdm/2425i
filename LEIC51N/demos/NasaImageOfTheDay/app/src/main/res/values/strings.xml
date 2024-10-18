@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NasaImageOfTheDay</string>
+    <string name="generic_error_button">retry\n</string>
+    <string name="generic_error">Error</string>
+    <string name="generic_error_message">An error occured:</string>
+    <string name="refresh">refresh</string>
+    <string name="title_activity_about">AboutActivity</string>
+</resources>
