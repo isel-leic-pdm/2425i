@@ -1,7 +1,7 @@
 package pdm.demos.stopwatch.main
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,7 @@ sealed interface StopWatchScreenState {
         val value: StopWatch.Value = stopWatch.value()
     ) : StopWatchScreenState
 
-    data class Stopped(val stopWatch: StopWatch) : StopWatchScreenState
+    data class Stopped(val value: StopWatch) : StopWatchScreenState
 }
 
 /**
@@ -37,11 +37,16 @@ class StopWatchScreenViewModel : ViewModel() {
         if (currentState is StopWatchScreenState.Running)
             return
 
+
         state = StopWatchScreenState.Running(StopWatch.start())
         viewModelScope.launch {
-            while (state is StopWatchScreenState.Running) {
-                // TODO: Change state so that it can be observed by the UI
-                delay(50)
+            while (true) {
+                delay(10)
+                state.let {
+                    if (it is StopWatchScreenState.Running) {
+                        state = it.copy(value = it.stopWatch.value())
+                    }
+                }
             }
         }
     }

@@ -8,8 +8,14 @@ private const val MILLISECONDS_IN_SECOND = 1000
  */
 data class StopWatch(val start: Long, val end: Long?) {
 
+    init {
+        require(start >= 0) { "start must be non-negative" }
+        require(end == null || end >= 0) { "end must be non-negative" }
+    }
+
     companion object {
         fun start(): StopWatch = StopWatch(System.currentTimeMillis(), null)
+        val Zero = StopWatch(0, 0)
     }
 
     /**
