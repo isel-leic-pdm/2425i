@@ -181,7 +181,33 @@ The timer should be updated every second and its state should be preserved on sc
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (06-A) Injeccção manual de dependências](https://www.youtube.com/live/GcJ3KwN_sOE?si=dyrVLyHeshuABZhr)
-* Android @ ISEL - 2024 - (06-B) Sessão de codificação ao vivo _(coming soon)_
+* [Android @ ISEL - 2024 - (06-B) Sessão de codificação ao vivo](https://www.youtube.com/live/8KjdDZxreYw?si=PlDMx6K-ZGUO9Lj_)
 
 ### Bonus Content
-* Lecture video (in Portuguese): Revisiting Kotlin's concurrency model _(coming soon)_
+* [Lecture video (in Portuguese): Revisiting Kotlin's concurrency model](https://www.youtube.com/live/XRq5QUf5QFE?si=VzEl6V_oHxutyu80)
+
+## Week 7 - 21/10/2024 to 27/10/2024
+### Subject: Comunication with HTTP APIs
+#### Topic breakdown:
+* The Android application as a HTTP client
+  * Motivation and consequences of distribution
+  * Required permissions
+* HTTP communication with Ktor client
+  * Programming model
+  * Making assinchrounous requests
+* JSON serialization with Kotlinx Serialization
+
+### For reference:
+* [Connecting to the network](https://developer.android.com/training/basics/network-ops/connecting)
+* [Ktor Client](https://ktor.io/docs/client-create-multiplatform-application.html#ktor-dependencies)
+  * [Ktor engines](https://ktor.io/docs/client-engines.html)
+  * [Content negotiation](https://ktor.io/docs/client-serialization.html)
+  * [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html)
+
+### Practical Class
+* Goal: Work on the course's project.
+* Recomended approach: The students that are working on the joint project with DAW may start the actual implementation of the project's services. 
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (07-A) Comunicação com APIs HTTP _(coming soon)_
+* Android @ ISEL - 2024 - (07-B) Sessão de codificação ao vivo _(coming soon)_
