@@ -209,5 +209,5 @@ The timer should be updated every second and its state should be preserved on sc
 * Recomended approach: The students that are working on the joint project with DAW may start the actual implementation of the project's services. 
 
 #### Video lecture (in Portuguese):
-* Android @ ISEL - 2024 - (07-A) Comunicação com APIs HTTP _(coming soon)_
+* [Android @ ISEL - 2024 - (07-A) Comunicação com APIs HTTP](https://www.youtube.com/live/nj--yWhmk64?si=E4TuYve-EaBmPF2B)
 * Android @ ISEL - 2024 - (07-B) Sessão de codificação ao vivo _(coming soon)_
