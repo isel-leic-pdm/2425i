@@ -1,8 +1,13 @@
 package pdm.demos.jokeofday
 
 import android.app.Application
-import pdm.demos.jokeofday.domain.FakeJokesService
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import pdm.demos.jokeofday.domain.JokesService
+import pdm.demos.jokeofday.http.IcanhazDadJokes
 
 /**
  * The application wide tag used for logging
@@ -20,5 +25,19 @@ interface DependenciesContainer {
  * The custom Application class that provides the actual dependencies
  */
 class JokeApplication : Application(), DependenciesContainer {
-    override val jokesService: JokesService by lazy { FakeJokesService() }
+    private val client by lazy {
+        HttpClient(OkHttp) {
+            install(ContentNegotiation) {
+                json(Json {
+                    ignoreUnknownKeys = true
+                    prettyPrint = true
+                    isLenient = true
+                })
+            }
+        }
+    }
+
+    override val jokesService: JokesService by lazy {
+        IcanhazDadJokes(client = client)
+    }
 }
