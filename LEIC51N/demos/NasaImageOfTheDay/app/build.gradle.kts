@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    kotlin("plugin.serialization")
+
+
 }
 
 android {
@@ -49,6 +52,7 @@ android {
         }
     }
 }
+val ktor_version: String by project
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -67,5 +71,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-okhttp:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+
+
+
 }

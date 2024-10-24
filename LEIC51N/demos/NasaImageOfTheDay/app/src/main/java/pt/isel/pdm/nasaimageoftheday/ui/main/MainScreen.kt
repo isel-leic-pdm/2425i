@@ -53,7 +53,7 @@ fun MainScreen(
                 is MainScreenState.Loading ->
                     LoadingView()
 
-                else ->
+                is MainScreenState.Idle ->
                     MainIdleView(loadImage = {
                         viewModel.fetchNasaImage()
                     })
