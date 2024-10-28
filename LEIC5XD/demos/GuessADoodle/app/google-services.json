@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881448725720",
+    "project_id": "guess-a-doodle",
+    "storage_bucket": "guess-a-doodle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881448725720:android:e430eba0e5f227e958fbad",
+        "android_client_info": {
+          "package_name": "pdm.demos.guessadoodle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbT89HktusDLQYOT87jOJB5rAf7PC_3Go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
