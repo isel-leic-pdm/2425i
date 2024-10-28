@@ -228,12 +228,14 @@ The timer should be updated every second and its state should be preserved on sc
   * [Install, configure and integrate Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/install_and_configure)
   * [Connect your app and start prototyping | Firebase Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/connect_and_prototype?database=Firestore)
 * Firestore API
+  * [Getting started with Cloud Firestore](https://firebase.google.com/docs/firestore/quickstart)
   * [Cloud Firestore Data model | Firebase](https://firebase.google.com/docs/firestore/data-model) 
   * [Supported data types | Firestore | Firebase](https://firebase.google.com/docs/firestore/manage-data/data-types)
   * [Add data to Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/manage-data/add-data)
   * [Delete data from Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/manage-data/delete-data)
   * [Get data with Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/query-data/get-data)
   * [Get real time updates with Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/query-data/listen)
+  * [Firestore API Docs](https://firebase.google.com/docs/reference/kotlin/com/google/firebase/firestore/package-summary)
 * Kotlin concurrency model
   * [Asynchronous Flow | Kotlin Documentation](https://kotlinlang.org/docs/flow.html) 
   * [Kotlin flows on Android](https://developer.android.com/kotlin/flow#callback)
@@ -246,7 +248,7 @@ The timer should be updated every second and its state should be preserved on sc
 
 #### Video lecture (in Portuguese):
 * Android @ ISEL - 2024 - (08) Firestore _(coming soon)_
-* Android @ ISEL - 2024 - Sessão de codificação ao vivo: Tic-Tac-Toe com TDD (parte 1) _(coming soon)_
+* Android @ ISEL - 2024 - Sessão de codificação ao vivo: Doodle Relay com TDD (parte 1) _(coming soon)_
 
 ### Bonus Content
 * Lecture video (in Portuguese): Kotlin flows _(coming soon)_
