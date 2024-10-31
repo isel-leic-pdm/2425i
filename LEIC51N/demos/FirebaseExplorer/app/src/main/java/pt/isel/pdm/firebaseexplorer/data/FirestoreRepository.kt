@@ -2,8 +2,6 @@ package pt.isel.pdm.firebaseexplorer.data
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 
@@ -57,5 +55,13 @@ class FirestoreRepository(
     override suspend fun getById(id: String): SimpleModel {
         val doc = db.collection(collectionName).document(id).get().await()
         return documentToSimpleModel(doc)
+    }
+
+    override suspend fun getInstancesWithNumberBiggerThan(nr: Int): List<SimpleModel> {
+        return db.collection(collectionName)
+            .whereGreaterThanOrEqualTo(NUMBER_LABEL, nr)
+            .get().await().map {
+                documentToSimpleModel(it)
+            }
     }
 }

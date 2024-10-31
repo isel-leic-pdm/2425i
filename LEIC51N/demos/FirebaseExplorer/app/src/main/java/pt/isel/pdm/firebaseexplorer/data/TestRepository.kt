@@ -8,4 +8,5 @@ interface TestRepository{
     suspend fun delete(m: SimpleModel)
     suspend fun getAll() : List<SimpleModel>
     suspend fun getById(id : String) : SimpleModel
+    suspend fun getInstancesWithNumberBiggerThan(nr:Int) : List<SimpleModel>
 }
