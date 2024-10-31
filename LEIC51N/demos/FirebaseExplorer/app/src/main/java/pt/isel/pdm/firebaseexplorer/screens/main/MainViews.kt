@@ -1,5 +1,6 @@
 package pt.isel.pdm.firebaseexplorer.screens.main
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,6 +31,7 @@ fun ModelListView(
     data: List<SimpleModel>,
     onUpdate: (SimpleModel) -> Unit,
     onDelete: (SimpleModel) -> Unit,
+    onClicked:(SimpleModel) -> Unit,
     onRefresh: () -> Unit
 ) {
     Button(onClick = onRefresh) {
@@ -42,24 +44,43 @@ fun ModelListView(
             .verticalScroll(rememberScrollState())
     ) {
         data.forEach { model ->
-            Row() {
-                IconButton(
-                    modifier = Modifier.padding(6.dp),
-                    onClick = { onUpdate(model) },
-                ) {
-                    Icon(imageVector = Icons.Default.Edit, contentDescription = "")
-                }
-
-                IconButton(
-                    modifier = Modifier.padding(12.dp),
-                    onClick = { onDelete(model) },
-                ) {
-                    Icon(imageVector = Icons.Default.Delete, contentDescription = "")
-                }
-
-                Text("${model.id} || ${model.number}")
-            }
+            SimpleModelView(
+                model, onUpdate, onDelete,onClicked)
 
         }
+    }
+}
+
+@Composable
+fun SimpleModelView(
+    model: SimpleModel,
+    onUpdate: ((SimpleModel) -> Unit)?,
+    onDelete: ((SimpleModel) -> Unit)?,
+    onClicked: ((SimpleModel) -> Unit)?
+) {
+    Row(
+        modifier = Modifier.clickable {
+            onClicked?.invoke(model)
+        }
+    ) {
+        if (onUpdate != null) {
+            IconButton(
+                modifier = Modifier.padding(6.dp),
+                onClick = { onUpdate(model) },
+            ) {
+                Icon(imageVector = Icons.Default.Edit, contentDescription = "")
+            }
+        }
+
+        if (onDelete != null) {
+            IconButton(
+                modifier = Modifier.padding(12.dp),
+                onClick = { onDelete(model) },
+            ) {
+                Icon(imageVector = Icons.Default.Delete, contentDescription = "")
+            }
+        }
+
+        Text("${model.id} || ${model.number}")
     }
 }

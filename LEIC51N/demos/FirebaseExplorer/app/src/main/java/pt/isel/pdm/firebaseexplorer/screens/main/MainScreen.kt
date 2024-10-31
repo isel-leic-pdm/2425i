@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,12 +20,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 
 @Composable
-fun MainScreen(viewModel: MainViewModel) {
+fun MainScreen(
+    viewModel: MainViewModel,
+    navigateToDetail: (SimpleModel) -> Unit
+) {
     LaunchedEffect(Unit) {
         viewModel.getAll()
     }
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         floatingActionButton = {
@@ -51,7 +55,8 @@ fun MainScreen(viewModel: MainViewModel) {
                 data = viewModel.modelList,
                 onUpdate = { viewModel.update(it) },
                 onDelete = { viewModel.delete(it) },
-                onRefresh = { viewModel.getAll() }
+                onRefresh = { viewModel.getAll() },
+                onClicked = navigateToDetail
             )
 
 
@@ -86,7 +91,6 @@ fun LoadingView() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Loading")
-
     }
 }
 
@@ -108,7 +112,6 @@ fun ErrorView(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Dismiss")
 
         Text("Error")
         Text(error.toString())

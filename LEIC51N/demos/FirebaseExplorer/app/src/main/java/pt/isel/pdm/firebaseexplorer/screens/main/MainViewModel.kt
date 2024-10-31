@@ -7,13 +7,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import pt.isel.pdm.firebaseexplorer.data.TestRepository
+import pt.isel.pdm.firebaseexplorer.data.TestService
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import java.util.UUID
 
 
 class MainViewModel(
-    private val repository: TestRepository
+    private val service: TestService
 ) : ViewModel() {
 
     var message by mutableStateOf("")
@@ -28,7 +28,7 @@ class MainViewModel(
             1,
             listOf(1, 2, 3)
         )
-        repository.create(obj)
+        service.create(obj)
 
         message = "Created " + obj.id
         modelList.add(obj)
@@ -36,23 +36,26 @@ class MainViewModel(
 
     fun update(obj: SimpleModel) = stateAwareOperation {
         val updatedValue = obj.copy(number = obj.number + 1)
-        repository.update(updatedValue)
+        service.update(updatedValue)
         message = "updated " + obj.id
         modelList[modelList.indexOfFirst { it.id == obj.id }] = updatedValue;
     }
 
     fun delete(obj: SimpleModel) = stateAwareOperation {
-        repository.delete(obj)
+        service.delete(obj)
         message = "delete " + obj.id
         modelList.remove(obj)
     }
 
-    fun getAll() = stateAwareOperation {
-        val data = repository.getAll()
-        modelList.clear()
-        modelList.addAll(data)
-        message = ""
+    fun getAll() {
+        stateAwareOperation {
+            val data = service.getAll()
+            modelList.clear()
+            modelList.addAll(data)
+            message = ""
+        }
     }
+
 
     private fun stateAwareOperation(oper: suspend () -> Unit) {
         loading = true
