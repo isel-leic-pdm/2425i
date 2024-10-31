@@ -248,10 +248,8 @@ The timer should be updated every second and its state should be preserved on sc
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (08) Firestore](https://www.youtube.com/live/Ja00LqGUy50?si=yE8yFjN0XIGda-P4)
-* Android @ ISEL - 2024 - Sessão de codificação: Guess A Doodle com TDD (parte 1) _(coming soon)_
+* [Android @ ISEL - 2024 - (09) Kotlin flows](https://youtube.com/live/tPTkTNAsE8U?feature=share)
 
-### Bonus Content
-* Lecture video (in Portuguese): Kotlin flows _(coming soon)_
 
 ## Week 9 - 04/11/2024 to 10/11/2024
 ### Subject: Intermediary project presentations
