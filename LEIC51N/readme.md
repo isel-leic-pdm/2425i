@@ -208,6 +208,7 @@ The timer should be updated every second and its state should be preserved on sc
   * [Ktor engines](https://ktor.io/docs/client-engines.html)
   * [Content negotiation](https://ktor.io/docs/client-serialization.html)
   * [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html)
+* [Alert Dialog](https://developer.android.com/develop/ui/compose/components/dialog)
 
 ### Practical Class
 * Goal: Work on the course's project.
