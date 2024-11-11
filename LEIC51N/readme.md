@@ -208,6 +208,7 @@ The timer should be updated every second and its state should be preserved on sc
   * [Ktor engines](https://ktor.io/docs/client-engines.html)
   * [Content negotiation](https://ktor.io/docs/client-serialization.html)
   * [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html)
+* [Alert Dialog](https://developer.android.com/develop/ui/compose/components/dialog)
 
 ### Practical Class
 * Goal: Work on the course's project.
@@ -216,3 +217,49 @@ The timer should be updated every second and its state should be preserved on sc
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (07-A) Comunicação com APIs HTTP](https://www.youtube.com/live/nj--yWhmk64?si=E4TuYve-EaBmPF2B)
 * Android @ ISEL - 2024 - (07-B) Sessão de codificação ao vivo _(coming soon)_
+
+
+## Week 8 - 28/10/2024 to 03/11/2024
+### Subject: Persistent storage with Firestore
+#### Topic breakdown:
+* General characterization
+  * Data model (i.e. Document DB)
+  * Documents, collections and references
+  * Supported data types
+* Description of the Android SDK API
+  * Adding, updating and deleting data
+  * Reading data: queries and observable queries
+
+### For reference:
+* Prepare your environment for Firebase
+  * [Add Firebase to your Android project](https://firebase.google.com/docs/android/setup)
+  * [Install, configure and integrate Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/install_and_configure)
+  * [Connect your app and start prototyping | Firebase Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/connect_and_prototype?database=Firestore)
+* Firestore API
+  * [Getting started with Cloud Firestore](https://firebase.google.com/docs/firestore/quickstart)
+  * [Cloud Firestore Data model | Firebase](https://firebase.google.com/docs/firestore/data-model) 
+  * [Supported data types | Firestore | Firebase](https://firebase.google.com/docs/firestore/manage-data/data-types)
+  * [Add data to Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/manage-data/add-data)
+  * [Delete data from Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/manage-data/delete-data)
+  * [Get data with Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/query-data/get-data)
+  * [Get real time updates with Cloud Firestore | Firebase](https://firebase.google.com/docs/firestore/query-data/listen)
+  * [Firestore API Docs](https://firebase.google.com/docs/reference/kotlin/com/google/firebase/firestore/package-summary)
+* Kotlin concurrency model
+  * [Asynchronous Flow | Kotlin Documentation](https://kotlinlang.org/docs/flow.html) 
+  * [Kotlin flows on Android](https://developer.android.com/kotlin/flow#callback)
+* Extra material
+  * [TDD Is The Best Design Technique](https://www.youtube.com/watch?v=ln4WnxX-wrw)
+
+### Practical Class
+* Goal: Work on the course's project.
+* Recomended approach: The students that are working on the [CheR application](https://github.com/isel-leic-pdm/2425i/blob/main/assignments/PDM-2425-1_Option_B.pdf) may start the actual implementation of the project's services using Firestore.
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (08) Firestore _(coming soon)_
+* Android @ ISEL - 2024 - Sessão de codificação ao vivo: Doodle Relay com TDD (parte 1) _(coming soon)_
+
+### Bonus Content
+* Lecture video (in Portuguese): Kotlin flows _(coming soon)_
+
+## Week 9 - 04/11/2024 to 10/11/2024
+### Subject: Intermediary project presentations
