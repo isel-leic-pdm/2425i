@@ -269,6 +269,6 @@ The timer should be updated every second and its state should be preserved on sc
 * Recomended approach: Replace the fake user preferences with the actual implementation using Preferences DataStore.
 
 #### Video lecture (in Portuguese):
-* Android @ ISEL - 2024 - (10) Preferences DataStore __(coming soon)__
-* Android @ ISEL - 2024 - (11) Construindo a aplicação Guess A Doodle __(coming soon)__
-* Android @ ISEL - 2024 - (12) Construindo a aplicação Guess A Doodle __(coming soon)__
+* [Android @ ISEL - 2024 - (10-A) Construindo a aplicação "Guess a Doodle"](https://youtube.com/live/rT7ZEH9nifQ?feature=share)
+* [Android @ ISEL - 2024 - (10-B) Construindo a aplicação "Guess a Doodle"](https://www.youtube.com/live/_mn1qdA1Mi0?si=4pSfMGc8oygF7K7r)
+* Android @ ISEL - 2024 - (10-C) Preferences DataStore __(coming soon)__

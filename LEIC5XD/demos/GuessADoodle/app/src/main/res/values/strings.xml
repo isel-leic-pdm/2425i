@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Guess a Doodle</string>
+    <string name="preferences_ok_button">OK</string>
+    <string name="preferences_cancel_button">Cancel</string>
 </resources>
