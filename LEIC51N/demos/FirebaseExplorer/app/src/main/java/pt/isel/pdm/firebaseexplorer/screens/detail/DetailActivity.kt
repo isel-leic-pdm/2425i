@@ -14,6 +14,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import pt.isel.pdm.firebaseexplorer.DependencyContainer
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel

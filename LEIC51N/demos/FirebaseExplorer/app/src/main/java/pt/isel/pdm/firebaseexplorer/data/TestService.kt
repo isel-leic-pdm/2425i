@@ -1,5 +1,6 @@
 package pt.isel.pdm.firebaseexplorer.data
 
+import kotlinx.coroutines.flow.Flow
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 
 interface TestService{
@@ -10,4 +11,5 @@ interface TestService{
     suspend fun getById(id : String) : SimpleModel
     suspend fun getInstancesWithNumberBiggerThan(nr:Int) : List<SimpleModel>
     suspend fun waitForChanges(id:String) : SimpleModel
+    suspend fun getByIdFlow(id : String) : Flow<SimpleModel>
 }

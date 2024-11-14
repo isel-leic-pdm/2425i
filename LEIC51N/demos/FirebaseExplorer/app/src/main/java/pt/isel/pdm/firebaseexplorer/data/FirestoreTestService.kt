@@ -3,6 +3,9 @@ package pt.isel.pdm.firebaseexplorer.data
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.snapshots
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
@@ -91,6 +94,12 @@ class FirestoreTestService(
             }
         }
     }
+
+    override suspend fun getByIdFlow(id: String): Flow<SimpleModel> {
+       TODO("Not yet implemented")
+    }
+
+
 
     private fun simpleModelToHashMap(m: SimpleModel): Map<String, Any> {
         return mapOf(

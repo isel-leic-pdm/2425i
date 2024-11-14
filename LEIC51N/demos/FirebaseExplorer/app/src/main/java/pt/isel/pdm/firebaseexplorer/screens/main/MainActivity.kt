@@ -22,6 +22,7 @@ import pt.isel.pdm.firebaseexplorer.DependencyContainer
 import pt.isel.pdm.firebaseexplorer.FirebaseExplorerApplication
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import pt.isel.pdm.firebaseexplorer.screens.detail.DetailActivity
+import pt.isel.pdm.firebaseexplorer.screens.flow.FlowPlaygroundActivity
 import pt.isel.pdm.firebaseexplorer.screens.helpers.viewModelInit
 import pt.isel.pdm.firebaseexplorer.screens.theme.FirebaseExplorerTheme
 import java.util.UUID
@@ -44,6 +45,9 @@ class MainActivity : ComponentActivity() {
                     viewModel = viewModel,
                     navigateToDetail = { model ->
                         DetailActivity.navigate(this, model)
+                    },
+                    navigateToFlow = {
+                        FlowPlaygroundActivity.navigate(this)
                     })
             }
         }
