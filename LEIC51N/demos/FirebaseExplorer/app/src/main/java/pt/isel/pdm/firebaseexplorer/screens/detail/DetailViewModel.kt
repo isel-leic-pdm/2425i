@@ -57,6 +57,22 @@ class DetailViewModel2(
 ) : ViewModel() {
     var error by mutableStateOf<Exception?>(null)
 
+    private val mutableFlow = MutableStateFlow(modelInfo)
+
+    val state: StateFlow<SimpleModel>
+        get() = mutableFlow
+
+    init {
+        viewModelScope.launch {
+            service.getByIdFlow(modelInfo.id).collect{
+                mutableFlow.emit(it)
+            }
+        }
+    }
+    fun dismissError() {
+        error = null
+    }
+
 }
 
 class DetailViewModel3(
@@ -64,5 +80,14 @@ class DetailViewModel3(
     modelInfo: SimpleModel
 ) : ViewModel() {
     var error by mutableStateOf<Exception?>(null)
+    fun dismissError() {
+        error = null
+    }
 
+    val state = service
+        .getByIdFlow(modelInfo.id)
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(),
+                modelInfo)
 }

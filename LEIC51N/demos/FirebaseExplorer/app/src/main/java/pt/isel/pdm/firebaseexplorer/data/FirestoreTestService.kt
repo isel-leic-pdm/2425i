@@ -4,7 +4,11 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.snapshots
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -96,10 +100,41 @@ class FirestoreTestService(
         }
     }
 
-    override fun getByIdFlow(id: String): Flow<SimpleModel> {
-        TODO("Not yet implemented")
+    fun getByIdFlowV0(id: String): Flow<SimpleModel> {
+        return flow {
+            while (true) {
+                val model = waitForChanges(id)
+                emit(model)
+            }
+        }
     }
 
+    fun getByIdFlowV1(id: String): Flow<SimpleModel> {
+        return callbackFlow {
+            val listener = db.collection(collectionName)
+                .document(id)
+                .addSnapshotListener { snapshot, error ->
+
+                    if (error != null)
+                        cancel("error", error)
+                    else if (snapshot == null)
+                        cancel("doc not found", Exception("Object with id:$id cannot be found"))
+                    else
+                        trySendBlocking(snapshot)
+
+                }
+
+            awaitClose { listener.remove() }
+        }.map { documentToSimpleModel(it) }
+    }
+
+    override fun getByIdFlow(id: String): Flow<SimpleModel> {
+        return db
+            .collection(collectionName)
+            .document(id)
+            .snapshots()
+            .map { documentToSimpleModel(it) }
+    }
 
     private fun simpleModelToHashMap(m: SimpleModel): Map<String, Any> {
         return mapOf(

@@ -54,9 +54,9 @@ class DetailActivity : ComponentActivity() {
 
 
         val model = intent.getParcelableExtra(EXTRA_ID, SimpleModel::class.java)
-        val viewModel by viewModels<DetailViewModel> {
+        val viewModel by viewModels<DetailViewModel3> {
             viewModelInit {
-                DetailViewModel(
+                DetailViewModel3(
                     (application as DependencyContainer).repository,
                     model!!
                 )
@@ -83,10 +83,10 @@ var test: MutableStateFlow<Int> = MutableStateFlow(1)
 
 @Composable
 private fun DetailScreen(
-    viewModel: DetailViewModel,
+    viewModel: DetailViewModel3,
     onBackPressed: () -> Unit
 ) {
-    val model = viewModel.model
+    val model = viewModel.state.collectAsStateWithLifecycle().value
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
