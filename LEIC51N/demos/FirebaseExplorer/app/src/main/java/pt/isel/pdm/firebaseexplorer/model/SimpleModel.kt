@@ -9,4 +9,9 @@ data class SimpleModel(
     val number: Int,
     val array : List<Int>,
 ) : Parcelable{
+
+    companion object
+    {
+        val none = SimpleModel("none", 1, listOf())
+    }
 }

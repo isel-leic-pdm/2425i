@@ -16,6 +16,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.shareIn
 import pt.isel.pdm.firebaseexplorer.DependencyContainer
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import pt.isel.pdm.firebaseexplorer.screens.helpers.viewModelInit
@@ -26,11 +33,6 @@ import pt.isel.pdm.firebaseexplorer.screens.theme.FirebaseExplorerTheme
 
 class DetailActivity : ComponentActivity() {
 
-    val viewModel by viewModels<DetailViewModel> {
-        viewModelInit {
-            DetailViewModel((application as DependencyContainer).repository)
-        }
-    }
 
     companion object {
         const val EXTRA_ID = "__ID"
@@ -45,11 +47,23 @@ class DetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!intent.hasExtra(EXTRA_ID))
+        if (!intent.hasExtra(EXTRA_ID)) {
             finish()
+            return
+        }
+
 
         val model = intent.getParcelableExtra(EXTRA_ID, SimpleModel::class.java)
-        viewModel.setup(model!!)
+        val viewModel by viewModels<DetailViewModel> {
+            viewModelInit {
+                DetailViewModel(
+                    (application as DependencyContainer).repository,
+                    model!!
+                )
+            }
+        }
+
+
 
         enableEdgeToEdge()
         setContent {
@@ -64,18 +78,23 @@ class DetailActivity : ComponentActivity() {
 
 }
 
+
+var test: MutableStateFlow<Int> = MutableStateFlow(1)
+
 @Composable
 private fun DetailScreen(
     viewModel: DetailViewModel,
     onBackPressed: () -> Unit
 ) {
+    val model = viewModel.model
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
 
         ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
 
-            SimpleModelView(viewModel.model, null, null, null)
+            SimpleModelView(model, null, null, null)
             Button(onClick = onBackPressed) {
                 Text("Back")
             }

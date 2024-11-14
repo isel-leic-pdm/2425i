@@ -7,13 +7,26 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.cancel
+import pt.isel.pdm.firebaseexplorer.FirebaseExplorerApplication
 import pt.isel.pdm.firebaseexplorer.screens.helpers.viewModelInit
 import pt.isel.pdm.firebaseexplorer.screens.theme.FirebaseExplorerTheme
 import java.util.concurrent.Flow
@@ -22,7 +35,7 @@ class FlowPlaygroundActivity : ComponentActivity() {
 
     val viewModel by viewModels<FlowPlaygroundViewModel> {
         viewModelInit {
-            FlowPlaygroundViewModel()
+            FlowPlaygroundViewModel((application as FirebaseExplorerApplication).settings)
         }
     }
 
@@ -38,12 +51,29 @@ class FlowPlaygroundActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            var bindFlow by remember { mutableStateOf(false) }
             FirebaseExplorerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    Column(
                         modifier = Modifier.padding(innerPadding)
-                    )
+                    ) {
+                        TextButton("Simple Flow", viewModel::simpleFlow)
+                        TextButton("Double Subs Flow", viewModel::simpleFlowTwoSubscribers)
+                        TextButton("Simple extended", viewModel::simpleFlowExtended)
+                        TextButton("Flow Creation", viewModel::flowCreation)
+                        TextButton("Hot flow", viewModel::hotFlow)
+                        TextButton("Hot flow bind", {
+                            viewModel.hotFlowInUi()
+                            bindFlow = true
+                        })
+
+                        if (bindFlow) {
+                            val state = viewModel.state.collectAsState().value
+                            Text("Flow current value is $state", fontSize = 20.sp)
+                        }
+
+                    }
                 }
             }
         }
@@ -51,17 +81,20 @@ class FlowPlaygroundActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun SettingDisplay(viewModel: FlowPlaygroundViewModel) {
+    val strProp = viewModel.strSetting.collectAsState().value
+    val intProp = viewModel.intSetting.collectAsStateWithLifecycle().value
+    TextButton("Int:$intProp | Str:$strProp", viewModel::incrementSettingsCounter)
+
+
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    FirebaseExplorerTheme {
-        Greeting("Android")
+fun TextButton(
+    str: String,
+    click: () -> Unit
+) {
+    Button(onClick = click) {
+        Text(str)
     }
 }

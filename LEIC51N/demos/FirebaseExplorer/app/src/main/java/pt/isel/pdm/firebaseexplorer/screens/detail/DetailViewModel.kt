@@ -7,24 +7,33 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onErrorResume
+import kotlinx.coroutines.flow.retry
+import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import pt.isel.pdm.firebaseexplorer.data.TestService
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 
 class DetailViewModel(
-    val service: TestService
+    private val service: TestService,
+    modelInfo: SimpleModel
 ) : ViewModel() {
 
+
     var error by mutableStateOf<Exception?>(null)
-    var model by mutableStateOf<SimpleModel>(SimpleModel("none", 1, listOf()))
+    var model by mutableStateOf(modelInfo)
 
-
-    fun setup(value: SimpleModel) {
-        model = value
-
+    init {
+        model = modelInfo
         viewModelScope.launch {
             while (true) {
                 try {
@@ -34,10 +43,26 @@ class DetailViewModel(
                 }
             }
         }
-
     }
+
 
     fun dismissError() {
         error = null
     }
+}
+
+class DetailViewModel2(
+    private val service: TestService,
+    modelInfo: SimpleModel
+) : ViewModel() {
+    var error by mutableStateOf<Exception?>(null)
+
+}
+
+class DetailViewModel3(
+    private val service: TestService,
+    modelInfo: SimpleModel
+) : ViewModel() {
+    var error by mutableStateOf<Exception?>(null)
+
 }
