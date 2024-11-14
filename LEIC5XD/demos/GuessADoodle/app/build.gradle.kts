@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "pdm.demos.guessadoodle"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "pdm.demos.guessadoodle"
@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.datastore)
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.google.firebase.firestore)
 
