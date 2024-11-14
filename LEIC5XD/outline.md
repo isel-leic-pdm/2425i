@@ -239,8 +239,6 @@ The timer should be updated every second and its state should be preserved on sc
 * Kotlin concurrency model
   * [Asynchronous Flow | Kotlin Documentation](https://kotlinlang.org/docs/flow.html) 
   * [Kotlin flows on Android](https://developer.android.com/kotlin/flow#callback)
-* Extra material
-  * [TDD Is The Best Design Technique](https://www.youtube.com/watch?v=ln4WnxX-wrw)
 
 ### Practical Class
 * Goal: Work on the course's project.
@@ -250,6 +248,27 @@ The timer should be updated every second and its state should be preserved on sc
 * [Android @ ISEL - 2024 - (08) Firestore](https://www.youtube.com/live/Ja00LqGUy50?si=yE8yFjN0XIGda-P4)
 * [Android @ ISEL - 2024 - (09) Kotlin flows](https://youtube.com/live/tPTkTNAsE8U?feature=share)
 
-
 ## Week 9 - 04/11/2024 to 10/11/2024
 ### Subject: Intermediary project presentations
+
+## Week 10 - 11/11/2024 to 17/11/2024
+### Subject: Local storage with Preferences DataStore
+#### Topic breakdown:
+* General characterization
+  * Data model (i.e. key-value store)
+  * Supported data types
+* Kotlin concurrency model
+  * Flows, revisited 
+
+### For reference:
+  * [DataStore Overview](https://developer.android.com/topic/libraries/architecture/datastore)
+  * [TDD Is The Best Design Technique](https://www.youtube.com/watch?v=ln4WnxX-wrw)
+
+### Practical Class
+* Goal: Work on the course's project. 
+* Recomended approach: Replace the fake user preferences with the actual implementation using Preferences DataStore.
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (10) Preferences DataStore __(coming soon)__
+* Android @ ISEL - 2024 - (11) Construindo a aplicação Guess A Doodle __(coming soon)__
+* Android @ ISEL - 2024 - (12) Construindo a aplicação Guess A Doodle __(coming soon)__
