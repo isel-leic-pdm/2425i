@@ -1,4 +1,4 @@
-package pdm.demos.guessadoodle.preferences
+package pdm.demos.guessadoodle.preferences.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

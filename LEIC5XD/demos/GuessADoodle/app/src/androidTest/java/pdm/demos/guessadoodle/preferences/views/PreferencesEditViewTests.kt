@@ -1,4 +1,4 @@
-package pdm.demos.guessadoodle.preferences
+package pdm.demos.guessadoodle.preferences.views
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -13,9 +13,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import pdm.demos.guessadoodle.domain.Nick
+import pdm.demos.guessadoodle.preferences.PreferencesScreenState
 
 @RunWith(AndroidJUnit4::class)
-class PreferencesDisplayViewTests {
+class PreferencesEditViewTests {
 
     @get:Rule
     val composeTree = createComposeRule()
@@ -24,10 +25,10 @@ class PreferencesDisplayViewTests {
     fun nick_is_displayed() {
         val expected = Nick("John")
         composeTree.setContent {
-            PreferencesDisplayView(
-                PreferencesScreenState.Displaying(expected),
-                onEditIntent = {},
-                onCancelIntent = {}
+            PreferencesEditView(
+                PreferencesScreenState.Editing(expected),
+                onSaveIntent = { },
+                onCancelIntent = { }
             )
         }
 
@@ -41,14 +42,14 @@ class PreferencesDisplayViewTests {
     fun buttons_are_in_correct_state() {
         val expected = Nick("John")
         composeTree.setContent {
-            PreferencesDisplayView(
-                PreferencesScreenState.Displaying(expected),
-                onEditIntent = {},
-                onCancelIntent = {}
+            PreferencesEditView(
+                PreferencesScreenState.Editing(expected),
+                onSaveIntent = { },
+                onCancelIntent = { }
             )
         }
 
-        composeTree.onNodeWithTag(OK_BUTTON_TAG).assertIsDisplayed().assertIsNotEnabled()
+        composeTree.onNodeWithTag(OK_BUTTON_TAG).assertIsDisplayed().assertIsEnabled()
         composeTree.onNodeWithTag(CANCEL_BUTTON_TAG).assertIsDisplayed().assertIsEnabled()
     }
 
@@ -57,9 +58,9 @@ class PreferencesDisplayViewTests {
         var onCancelIntentCalled = false
         val expected = Nick("John")
         composeTree.setContent {
-            PreferencesDisplayView(
-                PreferencesScreenState.Displaying(expected),
-                onEditIntent = {},
+            PreferencesEditView(
+                PreferencesScreenState.Editing(expected),
+                onSaveIntent = { },
                 onCancelIntent = { onCancelIntentCalled = true }
             )
         }
@@ -69,18 +70,18 @@ class PreferencesDisplayViewTests {
     }
 
     @Test
-    fun onEditIntent_is_called_when_text_is_entered_on_the_nick_textfield() {
-        var onEditIntentCalled = false
+    fun onSaveIntent_is_called_when_ok_button_is_pressed() {
+        var onSaveIntentCalled = false
         val expected = Nick("John")
         composeTree.setContent {
-            PreferencesDisplayView(
-                PreferencesScreenState.Displaying(expected),
-                onEditIntent = { onEditIntentCalled = true },
-                onCancelIntent = {}
+            PreferencesEditView(
+                PreferencesScreenState.Editing(expected),
+                onSaveIntent = { onSaveIntentCalled = true },
+                onCancelIntent = { }
             )
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextInput("John Doe")
-        assert(onEditIntentCalled)
+        composeTree.onNodeWithTag(OK_BUTTON_TAG).performClick()
+        assert(onSaveIntentCalled)
     }
 }

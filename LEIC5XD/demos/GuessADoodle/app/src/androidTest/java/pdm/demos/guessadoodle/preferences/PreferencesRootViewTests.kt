@@ -8,6 +8,10 @@ import org.junit.Test
 
 import org.junit.runner.RunWith
 import pdm.demos.guessadoodle.domain.Nick
+import pdm.demos.guessadoodle.preferences.views.DISPLAY_VIEW_TAG
+import pdm.demos.guessadoodle.preferences.views.EDIT_VIEW_TAG
+import pdm.demos.guessadoodle.preferences.views.LOADING_VIEW_TAG
+import pdm.demos.guessadoodle.preferences.views.SAVING_VIEW_TAG
 
 @RunWith(AndroidJUnit4::class)
 class PreferencesRootViewTests {
