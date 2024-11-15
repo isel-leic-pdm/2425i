@@ -25,6 +25,7 @@ import kotlinx.coroutines.flow.replay
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import pt.isel.pdm.firebaseexplorer.data.SettingsService
+import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 
 
 const val TAG: String = "FLOW"
@@ -37,7 +38,7 @@ class FlowPlaygroundViewModel(
     private val simpleFlow = flow<Int> {
         Log.d(TAG, "going to start the flow")
 
-        repeat(3) { v : Int ->
+        repeat(3) { v: Int ->
             delay(1000)
             emit(v)
         }
@@ -194,7 +195,6 @@ class FlowPlaygroundViewModel(
     }
 
 
-
     private val mutableStateFlow = MutableStateFlow(-1)
 
     val state: StateFlow<Int>
@@ -212,34 +212,49 @@ class FlowPlaygroundViewModel(
     }
 
 
-
-
-
-
-
-
-
-
-
-
-     val intSetting = settingsService.intPreference
+    val intSetting = settingsService.intPreference
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
             -1
         )
 
-     val strSetting = settingsService.stringPreference
+    val strSetting = settingsService.stringPreference
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
             ""
         )
 
+    val smSetting = settingsService.simpleModelPreference
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(),
+            SimpleModel.none
+        )
+
+
+    init {
+        viewModelScope.launch {
+            smSetting.collect {
+                Log.d(TAG, "SimpleModel stored is $it")
+
+            }
+        }
+    }
+
     fun incrementSettingsCounter() {
         viewModelScope.launch {
             settingsService.updateIntPreference(intSetting.value + 1)
             settingsService.updateStringPreference("Int is ${intSetting.value}")
+            Log.d(TAG, "SimpleModel being changed")
+
+            settingsService.updateSimpleModel(
+                SimpleModel(
+                    "cenas giras ${intSetting.value}",
+                    intSetting.value,
+                    emptyList()
+                ))
         }
     }
 }

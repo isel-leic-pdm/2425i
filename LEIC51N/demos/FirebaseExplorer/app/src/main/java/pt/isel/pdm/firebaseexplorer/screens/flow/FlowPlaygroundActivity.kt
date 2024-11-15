@@ -73,6 +73,8 @@ class FlowPlaygroundActivity : ComponentActivity() {
                             Text("Flow current value is $state", fontSize = 20.sp)
                         }
 
+                        SettingDisplay(viewModel)
+
                     }
                 }
             }
