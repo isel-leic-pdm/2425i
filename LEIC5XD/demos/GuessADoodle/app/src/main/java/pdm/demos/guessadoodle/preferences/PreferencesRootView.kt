@@ -2,6 +2,10 @@ package pdm.demos.guessadoodle.preferences
 
 import androidx.compose.runtime.Composable
 import pdm.demos.guessadoodle.domain.Nick
+import pdm.demos.guessadoodle.preferences.views.PreferencesDisplayView
+import pdm.demos.guessadoodle.preferences.views.PreferencesEditView
+import pdm.demos.guessadoodle.preferences.views.PreferencesLoadingView
+import pdm.demos.guessadoodle.preferences.views.PreferencesSavingView
 
 sealed interface PreferencesScreenState {
     data object Loading : PreferencesScreenState
@@ -19,7 +23,11 @@ fun PreferencesRootView(screenState: PreferencesScreenState) {
             onEditIntent = {},
             onCancelIntent = {}
         )
-        is PreferencesScreenState.Editing -> PreferencesEditView(screenState)
+        is PreferencesScreenState.Editing -> PreferencesEditView(
+            state = screenState,
+            onSaveIntent = {},
+            onCancelIntent = {}
+        )
         is PreferencesScreenState.Saving -> PreferencesSavingView()
     }
 }
