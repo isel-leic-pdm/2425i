@@ -8,10 +8,13 @@
       <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle.preferences'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreferencesDisplayViewTests">
+      <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle'">
+      <SelectionState runConfigName="NickPreferencesRepositoryTests">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="nickFLow_emits_all_updates()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -12,7 +12,11 @@ import com.google.firebase.firestore.firestore
 
 const val TAG = "Guess-A-Doodle"
 
-class GuessADoodleApplication : Application() {
+interface DependenciesContainer {
+    val preferencesDataStore: DataStore<Preferences>
+}
+
+class GuessADoodleApplication : Application(), DependenciesContainer {
 
     val emulatedDb: FirebaseFirestore by lazy {
         Firebase.firestore.also {
@@ -27,5 +31,5 @@ class GuessADoodleApplication : Application() {
         Firebase.firestore
     }
 
-    private val preferencesDataStore: DataStore<Preferences> by preferencesDataStore(name = "preferences")
+    override val preferencesDataStore: DataStore<Preferences> by preferencesDataStore(name = "preferences")
 }

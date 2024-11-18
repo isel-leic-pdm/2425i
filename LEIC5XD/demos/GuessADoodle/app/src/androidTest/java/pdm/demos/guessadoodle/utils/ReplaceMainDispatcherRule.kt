@@ -9,6 +9,10 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
+/**
+ * A JUnit Test Rule that swaps the main dispatcher for the given one. Use this rule for tests that
+ * involve ViewModels because viewModelScope is hardcoded to use the main dispatcher
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 class ReplaceMainDispatcherRule(
     val testDispatcher: TestDispatcher = StandardTestDispatcher()
