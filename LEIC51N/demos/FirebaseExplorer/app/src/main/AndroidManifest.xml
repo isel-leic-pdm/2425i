@@ -16,6 +16,11 @@
         android:theme="@style/Theme.FirebaseExplorer"
         tools:targetApi="31">
         <activity
+            android:name=".screens.room.RoomPlaygroundActivity"
+            android:exported="false"
+            android:label="@string/title_activity_room_playground"
+            android:theme="@style/Theme.FirebaseExplorer" />
+        <activity
             android:name=".screens.flow.FlowPlaygroundActivity"
             android:exported="false"
             android:label="@string/title_activity_flow_playground"

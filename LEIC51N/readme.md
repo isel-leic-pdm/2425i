@@ -308,6 +308,7 @@ The timer should be updated every second and its state should be preserved on sc
 * [Database](https://developer.android.com/training/data-storage/room#database)
 * [Entities](https://developer.android.com/training/data-storage/room/defining-data)
 * [DAOs](https://developer.android.com/training/data-storage/room/accessing-data)
+* [Define relationships between objects](https://developer.android.com/training/data-storage/room/relationships)
 
 ## Week 13 
 

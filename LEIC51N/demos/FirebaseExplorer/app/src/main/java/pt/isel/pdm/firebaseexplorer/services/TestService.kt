@@ -1,4 +1,4 @@
-package pt.isel.pdm.firebaseexplorer.data
+package pt.isel.pdm.firebaseexplorer.services
 
 import kotlinx.coroutines.flow.Flow
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel

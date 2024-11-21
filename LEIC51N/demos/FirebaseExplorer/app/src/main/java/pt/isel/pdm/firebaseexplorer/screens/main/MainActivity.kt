@@ -24,6 +24,7 @@ import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import pt.isel.pdm.firebaseexplorer.screens.detail.DetailActivity
 import pt.isel.pdm.firebaseexplorer.screens.flow.FlowPlaygroundActivity
 import pt.isel.pdm.firebaseexplorer.screens.helpers.viewModelInit
+import pt.isel.pdm.firebaseexplorer.screens.room.RoomPlaygroundActivity
 import pt.isel.pdm.firebaseexplorer.screens.theme.FirebaseExplorerTheme
 import java.util.UUID
 
@@ -48,6 +49,9 @@ class MainActivity : ComponentActivity() {
                     },
                     navigateToFlow = {
                         FlowPlaygroundActivity.navigate(this)
+                    },
+                    navigateToRoom = {
+                        RoomPlaygroundActivity.navigate(this)
                     })
             }
         }

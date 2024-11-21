@@ -27,6 +27,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.cancel
 import pt.isel.pdm.firebaseexplorer.FirebaseExplorerApplication
+import pt.isel.pdm.firebaseexplorer.screens.components.TextButton
 import pt.isel.pdm.firebaseexplorer.screens.helpers.viewModelInit
 import pt.isel.pdm.firebaseexplorer.screens.theme.FirebaseExplorerTheme
 import java.util.concurrent.Flow
@@ -91,12 +92,3 @@ fun SettingDisplay(viewModel: FlowPlaygroundViewModel) {
 
 }
 
-@Composable
-fun TextButton(
-    str: String,
-    click: () -> Unit
-) {
-    Button(onClick = click) {
-        Text(str)
-    }
-}

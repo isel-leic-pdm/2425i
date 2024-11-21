@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,7 +34,8 @@ import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 fun MainScreen(
     viewModel: MainViewModel,
     navigateToDetail: (SimpleModel) -> Unit,
-    navigateToFlow: () -> Unit
+    navigateToFlow: () -> Unit,
+    navigateToRoom: () -> Unit
 ) {
     LaunchedEffect(Unit) {
         viewModel.getAll()
@@ -56,6 +58,10 @@ fun MainScreen(
                 actions = {
                     IconButton(onClick = navigateToFlow) {
                         Icon(Icons.Default.Warning, contentDescription = "")
+                    }
+
+                    IconButton(onClick = navigateToRoom) {
+                        Icon(Icons.Default.Build, contentDescription = "")
                     }
                 }
             )

@@ -1,4 +1,4 @@
-package pt.isel.pdm.firebaseexplorer.data
+package pt.isel.pdm.firebaseexplorer.services
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException

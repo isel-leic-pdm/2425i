@@ -1,4 +1,4 @@
-package pt.isel.pdm.firebaseexplorer.data
+package pt.isel.pdm.firebaseexplorer.services
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,7 +16,6 @@ import kotlinx.coroutines.tasks.await
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class FirestoreTestService(
     private val db: FirebaseFirestore

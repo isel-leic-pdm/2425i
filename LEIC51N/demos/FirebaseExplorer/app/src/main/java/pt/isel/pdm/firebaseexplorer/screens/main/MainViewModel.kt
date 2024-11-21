@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import pt.isel.pdm.firebaseexplorer.data.TestService
+import pt.isel.pdm.firebaseexplorer.services.TestService
 import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import java.util.UUID
 
