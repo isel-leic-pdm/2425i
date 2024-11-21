@@ -288,3 +288,30 @@ The timer should be updated every second and its state should be preserved on sc
 * Android @ ISEL - 2024 - (10) Preferences DataStore __(coming soon)__
 * Android @ ISEL - 2024 - (11) Construindo a aplicação Guess A Doodle __(coming soon)__
 * Android @ ISEL - 2024 - (12) Construindo a aplicação Guess A Doodle __(coming soon)__
+
+
+## Week 11 - 18/11/2024 to 24/11/2024 _(preview)_
+### Subject: Persistent storage with Room
+#### Topic breakdown:
+* Discussion, should we use Databases on mobile applications?
+* Room characterization
+  * Base components and systems
+  * Integration workflow
+  * One to many relations
+
+### Practical Class
+* Goal: Work on the course's project. 
+* Suggested approach: Change the application's architecture to use a reactive approach.
+
+### For reference:
+* [Room](https://developer.android.com/training/data-storage/room#)
+* [Database](https://developer.android.com/training/data-storage/room#database)
+* [Entities](https://developer.android.com/training/data-storage/room/defining-data)
+* [DAOs](https://developer.android.com/training/data-storage/room/accessing-data)
+
+## Week 13 
+
+### 07/12/2023 - State management: persistent application state
+* Persisting application state in a local relational DB using [Room](https://developer.android.com/training/data-storage/room#kotlin)
+* Architectural elements: 
+	
