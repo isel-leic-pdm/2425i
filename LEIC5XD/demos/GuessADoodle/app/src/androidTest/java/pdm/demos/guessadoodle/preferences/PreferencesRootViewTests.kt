@@ -9,6 +9,7 @@ import org.junit.Test
 
 import org.junit.runner.RunWith
 import pdm.demos.guessadoodle.domain.Nick
+import pdm.demos.guessadoodle.domain.UserInfo
 import pdm.demos.guessadoodle.preferences.views.DISPLAY_VIEW_TAG
 import pdm.demos.guessadoodle.preferences.views.EDIT_VIEW_TAG
 import pdm.demos.guessadoodle.preferences.views.LOADING_VIEW_TAG
@@ -21,6 +22,14 @@ class PreferencesRootViewTests {
     val composeTree = createComposeRule()
 
     @Test
+    fun when_Initialized_the_Loading_view_is_shown() {
+        composeTree.setContent {
+            PreferencesRootView(PreferencesScreenState.Initialized)
+        }
+        composeTree.onNodeWithTag(LOADING_VIEW_TAG).assertExists()
+    }
+
+    @Test
     fun when_Loading_the_Loading_view_is_shown() {
         composeTree.setContent {
             PreferencesRootView(PreferencesScreenState.Loading)
@@ -31,7 +40,7 @@ class PreferencesRootViewTests {
     @Test
     fun when_Displaying_the_Display_view_is_shown() {
         composeTree.setContent {
-            PreferencesRootView(PreferencesScreenState.Displaying(Nick("John")))
+            PreferencesRootView(PreferencesScreenState.Displaying(UserInfo(Nick("John"))))
         }
         composeTree.onNodeWithTag(DISPLAY_VIEW_TAG).assertIsDisplayed()
     }
@@ -39,7 +48,7 @@ class PreferencesRootViewTests {
     @Test
     fun when_Editing_the_Edit_view_is_shown() {
         composeTree.setContent {
-            PreferencesRootView(PreferencesScreenState.Editing(Nick("John")))
+            PreferencesRootView(PreferencesScreenState.Editing(UserInfo(Nick("John"))))
         }
         composeTree.onNodeWithTag(EDIT_VIEW_TAG).assertIsDisplayed()
     }
@@ -47,7 +56,7 @@ class PreferencesRootViewTests {
     @Test
     fun when_Saving_the_Saving_view_is_shown() {
         composeTree.setContent {
-            PreferencesRootView(PreferencesScreenState.Saving)
+            PreferencesRootView(PreferencesScreenState.Saving(UserInfo(Nick("John"))))
         }
         composeTree.onNodeWithTag(SAVING_VIEW_TAG).assertIsDisplayed()
     }

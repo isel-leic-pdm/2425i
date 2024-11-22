@@ -24,6 +24,7 @@ import pdm.demos.guessadoodle.R
 import pdm.demos.guessadoodle.domain.MAX_NICK_SIZE
 import pdm.demos.guessadoodle.domain.MIN_NICK_SIZE
 import pdm.demos.guessadoodle.domain.Nick
+import pdm.demos.guessadoodle.domain.UserInfo
 import pdm.demos.guessadoodle.preferences.PreferencesScreenState
 import pdm.demos.guessadoodle.ui.theme.GuessADoodleTheme
 
@@ -32,7 +33,7 @@ const val EDIT_VIEW_TAG = "edit"
 @Composable
 fun PreferencesEditView(
     state: PreferencesScreenState.Editing,
-    onSaveIntent: (Nick) -> Unit,
+    onSaveIntent: (UserInfo) -> Unit,
     onCancelIntent: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -41,11 +42,13 @@ fun PreferencesEditView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize().testTag(EDIT_VIEW_TAG)
     ) {
-        NickTextField(nick = state.nick.value, onValueChange = { })
+        NickTextField(nick = state.userInfo?.nick?.value ?: "", onValueChange = { })
+        Spacer(modifier = Modifier.padding(8.dp))
+        TaglineTextField(tagline = state.userInfo?.tagline ?: "", onValueChange = { })
 
         Row(
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(top = 24.dp),
         ) {
             Button(modifier = Modifier.testTag(OK_BUTTON_TAG), onClick = { }) {
                 Text(stringResource(R.string.preferences_ok_button))
@@ -65,9 +68,9 @@ fun PreferencesEditView(
 fun PreferencesEditViewPreview() {
     GuessADoodleTheme {
         PreferencesEditView(
-            state = PreferencesScreenState.Editing(Nick("Palecas")),
-            onSaveIntent = {},
-            onCancelIntent = {}
+            state = PreferencesScreenState.Editing(UserInfo(Nick("Palecas"), "Sem medo!")),
+            onSaveIntent = { },
+            onCancelIntent = { }
         )
     }
 }

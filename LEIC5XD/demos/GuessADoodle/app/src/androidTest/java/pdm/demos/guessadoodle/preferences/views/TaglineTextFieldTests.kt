@@ -8,30 +8,30 @@ import androidx.compose.ui.test.performTextInput
 import org.junit.Rule
 import org.junit.Test
 
-class NickTextFieldTests {
+class TaglineTextFieldTests {
 
     @get:Rule
     val composeTree = createComposeRule()
 
     @Test
     fun nick_is_displayed() {
-        val expected = "John"
+        val expected = "A tagline"
         composeTree.setContent {
-            NickTextField(nick = expected, onValueChange = { })
+            TaglineTextField(tagline = expected, onValueChange = { })
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG, useUnmergedTree = true).assertTextEquals(expected)
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG, useUnmergedTree = true).assertTextEquals(expected)
     }
 
     @Test
     fun onValueChange_is_called_when_text_is_changed() {
         var actual = ""
-        val expected = "John"
+        val expected = "A tagline"
         composeTree.setContent {
-            NickTextField(nick = actual, onValueChange = { actual = it })
+            TaglineTextField(tagline = actual, onValueChange = { actual = it })
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextInput(expected)
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextInput(expected)
         assert(actual == expected)
     }
 
@@ -39,9 +39,9 @@ class NickTextFieldTests {
     fun enabled_state_is_correct() {
         val enabled = true
         composeTree.setContent {
-            NickTextField(nick = "", onValueChange = { }, enabled = enabled)
+            TaglineTextField(tagline = "", onValueChange = { }, enabled = enabled)
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).assertIsEnabled()
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).assertIsEnabled()
     }
 }

@@ -3,7 +3,7 @@ package pdm.demos.guessadoodle.preferences.views
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
-import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -13,6 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import pdm.demos.guessadoodle.domain.Nick
+import pdm.demos.guessadoodle.domain.UserInfo
 import pdm.demos.guessadoodle.preferences.PreferencesScreenState
 
 @RunWith(AndroidJUnit4::class)
@@ -22,29 +23,34 @@ class PreferencesDisplayViewTests {
     val composeTree = createComposeRule()
 
     @Test
-    fun nick_is_displayed() {
-        val expected = Nick("John")
+    fun userInfo_is_displayed() {
+        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { },
+                onEditIntent = { _, _ -> },
                 onCancelIntent = { }
             )
         }
 
         composeTree
-            .onNodeWithTag(NICK_TEXT_TAG)
+            .onNodeWithTag(NICK_TEXT_TAG, useUnmergedTree = true)
             .assertIsDisplayed()
-            .assertTextContains(expected.value)
+            .assertTextEquals(expected.nick.value)
+
+        composeTree
+            .onNodeWithTag(TAGLINE_TEXT_TAG, useUnmergedTree = true)
+            .assertIsDisplayed()
+            .assertTextEquals(expected.tagline ?: "")
     }
 
     @Test
     fun buttons_are_in_correct_state() {
-        val expected = Nick("John")
+        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { },
+                onEditIntent = { _, _ -> },
                 onCancelIntent = { }
             )
         }
@@ -56,11 +62,11 @@ class PreferencesDisplayViewTests {
     @Test
     fun onCancelIntent_is_called_when_cancel_button_is_pressed() {
         var onCancelIntentCalled = false
-        val expected = Nick("John")
+        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { },
+                onEditIntent = { _, _ -> },
                 onCancelIntent = { onCancelIntentCalled = true }
             )
         }
@@ -70,18 +76,40 @@ class PreferencesDisplayViewTests {
     }
 
     @Test
-    fun onEditIntent_is_called_when_text_is_entered_on_the_nick_textfield() {
-        var onEditIntentCalled = false
-        val expected = Nick("John")
+    fun onEditIntent_is_called_when_text_is_entered_on_the_nick_text_field() {
+        var onEditIntentParams: Pair<String, EditableField>? = null
+        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { onEditIntentCalled = true },
+                onEditIntent = { text, field -> onEditIntentParams = Pair(text, field) },
                 onCancelIntent = { }
             )
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextInput("something")
-        assert(onEditIntentCalled)
+        val enteredText = "something"
+        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextInput(enteredText)
+        assert(onEditIntentParams != null)
+        assert(onEditIntentParams?.first == enteredText)
+        assert(onEditIntentParams?.second == EditableField.Nick)
+    }
+
+    @Test
+    fun onEditIntent_is_called_when_text_is_entered_on_the_tagline_text_field() {
+        var onEditIntentParams: Pair<String, EditableField>? = null
+        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
+        composeTree.setContent {
+            PreferencesDisplayView(
+                PreferencesScreenState.Displaying(expected),
+                onEditIntent = { enteredText, editableField -> onEditIntentParams = Pair(enteredText, editableField) },
+                onCancelIntent = { }
+            )
+        }
+
+        val enteredText = "something"
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextInput(enteredText)
+        assert(onEditIntentParams != null)
+        assert(onEditIntentParams?.first == enteredText)
+        assert(onEditIntentParams?.second == EditableField.Tagline)
     }
 }
