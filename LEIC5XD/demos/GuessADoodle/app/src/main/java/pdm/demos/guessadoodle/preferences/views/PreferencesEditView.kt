@@ -18,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pdm.demos.guessadoodle.R
@@ -36,16 +38,20 @@ fun PreferencesEditView(
     onCancelIntent: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var nick by remember { mutableStateOf(state.nickText) }
+    val isNickFocused = (state.prevState.userInfo?.nick ?: "") != state.nickText
+    val isTagLineFocused = !isNickFocused
+
+    var nick by remember { mutableStateOf(TextFieldValue(text = state.nickText, selection = TextRange(state.nickText.length))) }
     var tagline by remember { mutableStateOf(state.taglineText) }
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize().testTag(EDIT_VIEW_TAG)
     ) {
-        NickTextField(nick = nick, onValueChange = { nick = it })
+        NickTextField(nick = nick, onValueChange = { nick = it }, requestFocus = isNickFocused)
         Spacer(modifier = Modifier.padding(8.dp))
-        TaglineTextField(tagline = tagline, onValueChange = { tagline = it })
+        TaglineTextField(tagline = tagline, onValueChange = { tagline = it }, requestFocus = isTagLineFocused)
 
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -53,8 +59,8 @@ fun PreferencesEditView(
         ) {
             Button(
                 modifier = Modifier.testTag(OK_BUTTON_TAG),
-                enabled = nick.isValidNick(),
-                onClick = { onSaveIntent(UserInfo(Nick(nick), tagline)) }
+                enabled = nick.text.isValidNick(),
+                onClick = { onSaveIntent(UserInfo(Nick(nick.text), tagline)) }
             ) {
                 Text(stringResource(R.string.preferences_ok_button))
             }

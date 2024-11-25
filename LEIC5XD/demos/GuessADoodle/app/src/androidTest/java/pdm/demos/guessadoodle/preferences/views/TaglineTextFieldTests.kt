@@ -1,6 +1,7 @@
 package pdm.demos.guessadoodle.preferences.views
 
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -44,4 +45,15 @@ class TaglineTextFieldTests {
 
         composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).assertIsEnabled()
     }
+
+    @Test
+    fun focus_state_is_correct() {
+        val focused = true
+        composeTree.setContent {
+            TaglineTextField(tagline = "", onValueChange = { }, requestFocus = focused)
+        }
+
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).assertIsFocused()
+    }
+
 }

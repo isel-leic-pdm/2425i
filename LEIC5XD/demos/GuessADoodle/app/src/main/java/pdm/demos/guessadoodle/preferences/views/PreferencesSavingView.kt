@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pdm.demos.guessadoodle.R
@@ -34,7 +35,7 @@ fun PreferencesSavingView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize().testTag(SAVING_VIEW_TAG)
     ) {
-        NickTextField(nick = state.userInfo?.nick?.value ?: "", enabled = false, onValueChange = { })
+        NickTextField(nick = TextFieldValue(state.userInfo?.nick?.value ?: ""), enabled = false, onValueChange = { })
         Spacer(modifier = Modifier.padding(8.dp))
         TaglineTextField(tagline = state.userInfo?.tagline ?: "", enabled = false, onValueChange = { })
 

@@ -8,9 +8,6 @@
       <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreferencesRootViewTests">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="when_Editing_cancel_button_transitions_to_Displaying_with_original_info()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -18,6 +15,9 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="PreferencesActivityTests">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="userInfo_is_displayed_and_focus_is_correct()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

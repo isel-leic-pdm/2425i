@@ -2,6 +2,7 @@ package pdm.demos.guessadoodle.preferences.views
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -23,12 +24,13 @@ class PreferencesEditViewTests {
     val composeTree = createComposeRule()
 
     @Test
-    fun userInfo_is_displayed() {
+    fun userInfo_is_displayed_and_focus_is_correct() {
         val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
+        val prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick")))
         composeTree.setContent {
             PreferencesEditView(
                 state = PreferencesScreenState.Editing(
-                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick"))),
+                    prevState = prevState,
                     nickText = expected.nick.value,
                     taglineText = expected.tagline ?: ""
                 ),
@@ -46,6 +48,12 @@ class PreferencesEditViewTests {
             .onNodeWithTag(TAGLINE_TEXT_TAG, useUnmergedTree = true)
             .assertIsDisplayed()
             .assertTextEquals(expected.tagline ?: "")
+
+        val expectedFocusTag =
+            if (expected.nick.value == (prevState.userInfo?.nick ?: "")) TAGLINE_TEXT_TAG
+            else NICK_TEXT_TAG
+
+        composeTree.onNodeWithTag(expectedFocusTag).assertIsFocused()
     }
 
     @Test
