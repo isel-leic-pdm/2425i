@@ -8,6 +8,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.performTextReplacement
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
@@ -24,7 +25,7 @@ class PreferencesDisplayViewTests {
 
     @Test
     fun userInfo_is_displayed() {
-        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
+        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
@@ -46,7 +47,7 @@ class PreferencesDisplayViewTests {
 
     @Test
     fun buttons_are_in_correct_state() {
-        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
+        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
@@ -62,7 +63,7 @@ class PreferencesDisplayViewTests {
     @Test
     fun onCancelIntent_is_called_when_cancel_button_is_pressed() {
         var onCancelIntentCalled = false
-        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
+        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
@@ -78,7 +79,7 @@ class PreferencesDisplayViewTests {
     @Test
     fun onEditIntent_is_called_when_text_is_entered_on_the_nick_text_field() {
         var onEditIntentParams: Pair<String, EditableField>? = null
-        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
+        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
@@ -88,16 +89,20 @@ class PreferencesDisplayViewTests {
         }
 
         val enteredText = "something"
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextInput(enteredText)
+        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextReplacement(enteredText)
         assert(onEditIntentParams != null)
-        assert(onEditIntentParams?.first == enteredText)
-        assert(onEditIntentParams?.second == EditableField.Nick)
+        assert(onEditIntentParams?.first == enteredText) {
+            "Expected: $enteredText, Actual: ${onEditIntentParams?.first}"
+        }
+        assert(onEditIntentParams?.second == EditableField.Nick) {
+            "Expected: ${EditableField.Nick}, Actual: ${onEditIntentParams?.second}"
+        }
     }
 
     @Test
     fun onEditIntent_is_called_when_text_is_entered_on_the_tagline_text_field() {
         var onEditIntentParams: Pair<String, EditableField>? = null
-        val expected = UserInfo(nick = Nick("I'm"), tagline = "I'm a tagline")
+        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
@@ -107,9 +112,13 @@ class PreferencesDisplayViewTests {
         }
 
         val enteredText = "something"
-        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextInput(enteredText)
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextReplacement(enteredText)
         assert(onEditIntentParams != null)
-        assert(onEditIntentParams?.first == enteredText)
-        assert(onEditIntentParams?.second == EditableField.Tagline)
+        assert(onEditIntentParams?.first == enteredText) {
+            "Expected: $enteredText, Actual: ${onEditIntentParams?.first}"
+        }
+        assert(onEditIntentParams?.second == EditableField.Tagline) {
+            "Expected: ${EditableField.Tagline}, Actual: ${onEditIntentParams?.second}"
+        }
     }
 }

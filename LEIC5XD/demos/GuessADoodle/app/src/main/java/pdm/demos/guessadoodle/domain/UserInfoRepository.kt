@@ -10,4 +10,5 @@ interface UserInfoRepository {
     val userInfo: Flow<UserInfo?>
     suspend fun getUserInfo(): UserInfo?
     suspend fun updateUserInfo(userInfo: UserInfo)
+    suspend fun clearUserInfo()
 }

@@ -16,8 +16,11 @@ class PreferencesActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.loadData()
+
         setContent {
-            PreferencesRootView(PreferencesScreenState.Loading)
+            PreferencesRootView(viewModel, onBackIntent = { finish() })
         }
     }
 }

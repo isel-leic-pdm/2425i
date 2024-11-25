@@ -28,6 +28,10 @@ class UserInfoPreferencesRepository(private val store: DataStore<Preferences>) :
     override suspend fun updateUserInfo(userInfo: UserInfo) {
         store.edit(transform = userInfo::writeToPreferences)
     }
+
+    override suspend fun clearUserInfo() {
+        store.edit { it.clear() }
+    }
 }
 
 // Keys for the user info data.

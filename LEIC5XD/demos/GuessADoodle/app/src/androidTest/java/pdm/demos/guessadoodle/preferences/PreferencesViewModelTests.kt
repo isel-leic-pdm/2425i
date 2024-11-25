@@ -24,6 +24,7 @@ class PreferencesViewModelTests {
             get() = flow { emit(null) }
         override suspend fun getUserInfo(): UserInfo? { delay(1000); return testUserInfo }
         override suspend fun updateUserInfo(userInfo: UserInfo) { }
+        override suspend fun clearUserInfo() { }
     }
 
     @Test
@@ -43,6 +44,19 @@ class PreferencesViewModelTests {
     }
 
     @Test
+    fun loadData_has_no_effect_when_not_in_Initialized_state() =
+        runTest(replaceMainDispatcherRule.testDispatcher) {
+            val sut = PreferencesViewModel(
+                userInfoRepository = fakeRepo,
+                initialState = PreferencesScreenState.Displaying(testUserInfo)
+            )
+            sut.loadData()?.join()
+            assert(sut.screenState.value is PreferencesScreenState.Displaying) {
+                "Expected state to be Loading, but was ${sut.screenState.value}"
+            }
+        }
+
+    @Test
     fun when_loadData_succeeds_transitions_to_Displaying() =
         runTest(replaceMainDispatcherRule.testDispatcher) {
             val sut = PreferencesViewModel(userInfoRepository = fakeRepo)
@@ -55,39 +69,89 @@ class PreferencesViewModelTests {
         }
 
     @Test
-    fun when_displaying_setEditing_transitions_to_Editing() {
+    fun when_displaying_startEditing_transitions_to_Editing() {
         val sut = PreferencesViewModel(
             userInfoRepository = fakeRepo,
             initialState = PreferencesScreenState.Displaying(testUserInfo)
         )
-        sut.setEditing(testUserInfo)
+        sut.startEditing(nickText = testUserInfo.nick.value, taglineText = testUserInfo.tagline ?: "")
         assert(sut.screenState.value is PreferencesScreenState.Editing) {
             "Expected state to be Editing, but was ${sut.screenState.value}"
         }
     }
 
     @Test
-    fun setEditing_has_no_effect_when_not_in_Displaying_state() {
+    fun startEditing_has_no_effect_when_not_in_Displaying_state() {
         val sut = PreferencesViewModel(
             userInfoRepository = fakeRepo,
             initialState = PreferencesScreenState.Initialized
         )
-        sut.setEditing(testUserInfo)
+        sut.startEditing(nickText = testUserInfo.nick.value, taglineText = testUserInfo.tagline ?: "")
         assert(sut.screenState.value is PreferencesScreenState.Initialized) {
             "Expected state to be Initialized, but was ${sut.screenState.value}"
         }
     }
 
     @Test
-    fun loadData_has_no_effect_when_not_in_Initialized_state() =
+    fun saveData_transitions_to_Saving() {
+        val sut = PreferencesViewModel(
+            userInfoRepository = fakeRepo,
+            initialState = PreferencesScreenState.Editing(
+                prevState = PreferencesScreenState.Displaying(testUserInfo),
+                nickText = testUserInfo.nick.value,
+                taglineText = testUserInfo.tagline ?: ""
+            )
+        )
+        sut.saveData(testUserInfo)
+        assert(sut.screenState.value is PreferencesScreenState.Saving) {
+            "Expected state to be Saving, but was ${sut.screenState.value}"
+        }
+    }
+
+    @Test
+    fun when_saveData_succeeds_transitions_to_Exit() =
         runTest(replaceMainDispatcherRule.testDispatcher) {
             val sut = PreferencesViewModel(
                 userInfoRepository = fakeRepo,
-                initialState = PreferencesScreenState.Displaying(testUserInfo)
+                initialState = PreferencesScreenState.Editing(
+                    prevState = PreferencesScreenState.Displaying(testUserInfo),
+                    nickText = testUserInfo.nick.value,
+                    taglineText = testUserInfo.tagline ?: ""
+                )
             )
-            sut.loadData()?.join()
-            assert(sut.screenState.value is PreferencesScreenState.Displaying) {
-                "Expected state to be Loading, but was ${sut.screenState.value}"
+
+            sut.saveData(testUserInfo)?.join()
+
+            assert(sut.screenState.value is PreferencesScreenState.Exit) {
+                "Expected state to be Exit, but was ${sut.screenState.value}"
             }
         }
+
+    @Test
+    fun saveData_has_no_effect_when_not_in_Editing_state() {
+        val sut = PreferencesViewModel(
+            userInfoRepository = fakeRepo,
+            initialState = PreferencesScreenState.Initialized
+        )
+        sut.saveData(testUserInfo)
+        assert(sut.screenState.value is PreferencesScreenState.Initialized) {
+            "Expected state to be Initialized, but was ${sut.screenState.value}"
+        }
+    }
+
+    @Test
+    fun cancel_Editing_when_in_Editing_state_changes_to_Displaying() {
+        val sut = PreferencesViewModel(
+            userInfoRepository = fakeRepo,
+            initialState = PreferencesScreenState.Editing(
+                prevState = PreferencesScreenState.Displaying(testUserInfo),
+                nickText = testUserInfo.nick.value,
+                taglineText = testUserInfo.tagline ?: ""
+            )
+        )
+        sut.cancelEditing()
+        assert(sut.screenState.value is PreferencesScreenState.Displaying) {
+            "Expected state to be Displaying, but was ${sut.screenState.value}"
+        }
+    }
 }

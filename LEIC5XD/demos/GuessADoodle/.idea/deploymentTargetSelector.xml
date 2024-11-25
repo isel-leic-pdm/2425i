@@ -5,16 +5,19 @@
       <SelectionState runConfigName="Guess_a_Doodle.app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle.preferences'">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreferencesViewModelTests">
+      <SelectionState runConfigName="PreferencesRootViewTests">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="when_loadData_succeeds_transitions_to_Displaying()">
+      <SelectionState runConfigName="when_Editing_cancel_button_transitions_to_Displaying_with_original_info()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="when_Editing_save_button_calls_onBackIntent_once_save_completes()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="PreferencesActivityTests">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

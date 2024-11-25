@@ -46,9 +46,14 @@ fun PreferencesDisplayView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize().testTag(DISPLAY_VIEW_TAG)
     ) {
-        NickTextField(nick = state.userInfo?.nick?.value ?: "", onValueChange = { })
+        NickTextField(
+            nick = state.userInfo?.nick?.value ?: "",
+            onValueChange = { onEditIntent(it, EditableField.Nick) }
+        )
         Spacer(modifier = Modifier.padding(8.dp))
-        TaglineTextField(tagline = state.userInfo?.tagline ?: "", onValueChange = { })
+        TaglineTextField(tagline = state.userInfo?.tagline ?: "", onValueChange = {
+            onEditIntent(it, EditableField.Tagline)
+        })
 
         Row(
             horizontalArrangement = Arrangement.Center,

@@ -34,9 +34,9 @@ fun PreferencesSavingView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize().testTag(SAVING_VIEW_TAG)
     ) {
-        NickTextField(nick = state.userInfo.nick.value, enabled = false, onValueChange = { })
+        NickTextField(nick = state.userInfo?.nick?.value ?: "", enabled = false, onValueChange = { })
         Spacer(modifier = Modifier.padding(8.dp))
-        TaglineTextField(tagline = state.userInfo.tagline ?: "", enabled = false, onValueChange = { })
+        TaglineTextField(tagline = state.userInfo?.tagline ?: "", enabled = false, onValueChange = { })
 
         Row(
             horizontalArrangement = Arrangement.Center,

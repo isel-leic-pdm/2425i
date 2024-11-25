@@ -47,4 +47,14 @@ class UserInfoPreferencesRepositoryTests {
         val userInfo = sut.userInfo.first()
         assert(userInfo == expectedUserInfo)
     }
+
+    @Test
+    fun clearUserInfo_removes_the_info() = runTest {
+        val sut = UserInfoPreferencesRepository(cleanDataStoreRule.dataStore)
+        val expectedUserInfo = UserInfo(Nick("John"))
+        sut.updateUserInfo(expectedUserInfo)
+        sut.clearUserInfo()
+        val userInfo = sut.userInfo.first()
+        assert(userInfo == null)
+    }
 }
