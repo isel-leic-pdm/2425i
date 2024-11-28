@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="loading">Loading</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="top_bar_go_back">back</string>
+    <string name="refresh">refresh</string>
+    <string name="game_current_player">current player</string>
+    <string name="game_draw">draw</string>
+    <string name="game_end">Game Ended!</string>
+    <string name="game_won">won</string>
+    <string name="game_retry">retry</string>
+    <string name="retry">retry</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="settings_save">save</string>
+</resources>

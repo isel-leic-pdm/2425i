@@ -12,6 +12,7 @@ import pt.isel.pdm.firebaseexplorer.model.SimpleModel
 import java.util.UUID
 
 
+
 class MainViewModel(
     private val service: TestService
 ) : ViewModel() {
