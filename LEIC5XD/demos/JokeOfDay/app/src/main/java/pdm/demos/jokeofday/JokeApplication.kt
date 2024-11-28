@@ -1,6 +1,7 @@
 package pdm.demos.jokeofday
 
 import android.app.Application
+import androidx.room.Room
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -8,6 +9,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import pdm.demos.jokeofday.domain.JokesService
 import pdm.demos.jokeofday.http.IcanhazDadJokes
+import pdm.demos.jokeofday.storage.JokesDB
 
 /**
  * The application wide tag used for logging
@@ -19,6 +21,7 @@ const val TAG = "JOKE_OF_DAY"
  */
 interface DependenciesContainer {
     val jokesService: JokesService
+    val jokesDb: JokesDB
 }
 
 /**
@@ -39,5 +42,13 @@ class JokeApplication : Application(), DependenciesContainer {
 
     override val jokesService: JokesService by lazy {
         IcanhazDadJokes(client = client)
+    }
+
+    override val jokesDb: JokesDB by lazy {
+        Room.databaseBuilder(
+            context = this,
+            klass = JokesDB::class.java,
+            name = "jokes-db"
+        ).build()
     }
 }

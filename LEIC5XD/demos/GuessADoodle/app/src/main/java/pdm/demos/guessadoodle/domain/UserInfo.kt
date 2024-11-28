@@ -1,5 +1,10 @@
 package pdm.demos.guessadoodle.domain
 
+/**
+ * A UserInfo is a value object that represents the user information.
+ */
+data class UserInfo(val nick: Nick, val tagline: String? = null)
+
 const val MIN_NICK_SIZE = 3
 const val MAX_NICK_SIZE = 20
 

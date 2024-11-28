@@ -5,4 +5,5 @@
     <string name="preferences_cancel_button">Cancel</string>
     <string name="preferences_nick_label">Your Nickname</string>
     <string name="preferences_nick_hint">Must have %1$d to %2$d characters</string>
+    <string name="preferences_tagline_label">Your tagline</string>
 </resources>
