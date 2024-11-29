@@ -310,9 +310,12 @@ The timer should be updated every second and its state should be preserved on sc
 * [DAOs](https://developer.android.com/training/data-storage/room/accessing-data)
 * [Define relationships between objects](https://developer.android.com/training/data-storage/room/relationships)
 
-## Week 13 
+## Week 12 - 25/11/2024 to 29/11/2024
+### Subject: Designing Mobile Applications
+#### Topic breakdown:
+* Application structure
+* Application modeling
+* Application design approaches
 
-### 07/12/2023 - State management: persistent application state
-* Persisting application state in a local relational DB using [Room](https://developer.android.com/training/data-storage/room#kotlin)
-* Architectural elements: 
-	
+### Practical Class
+* Goal: Work on the course's project. 
