@@ -2,6 +2,9 @@ package pdm.demos.jokeofday.domain
 
 import android.util.Log
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flow
 import pdm.demos.jokeofday.TAG
 import java.net.URL
 import kotlin.random.Random
@@ -9,7 +12,7 @@ import kotlin.random.Random
 /**
  * Contract of the service that provides jokes.
  */
-fun interface JokesService {
+interface JokesService {
     /**
      * Fetches a joke.
      * @return The fetched joke.
@@ -17,6 +20,11 @@ fun interface JokesService {
      * @throws kotlinx.coroutines.CancellationException If the operation was cancelled.
      */
     suspend fun fetchJoke(): Joke
+
+    /**
+     * The flow of jokes fetched by the service, if one exists.
+     */
+    val joke: Flow<Joke?>
 }
 
 /**
@@ -98,4 +106,8 @@ class FakeJokesService : JokesService {
         Log.v(TAG, "fetchJoke finishing")
         return jokes[index]
     }
+
+    override val joke: Flow<Joke>
+        get() = jokes.asFlow()
+
 }

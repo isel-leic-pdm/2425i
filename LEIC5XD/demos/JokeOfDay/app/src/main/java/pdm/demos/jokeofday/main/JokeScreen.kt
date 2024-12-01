@@ -1,6 +1,7 @@
 package pdm.demos.jokeofday.main
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import pdm.demos.jokeofday.R
 import pdm.demos.jokeofday.domain.FakeJokesService
@@ -14,7 +15,7 @@ import pdm.demos.jokeofday.ui.theme.JokeOfDayTheme
 fun JokeScreen(viewModel: JokeScreenViewModel) {
     JokeOfDayTheme {
 
-        val currentState = viewModel.state
+        val currentState: JokeScreenState = viewModel.stateFlow.collectAsState().value
         when (currentState) {
             is JokeScreenState.Idle -> IdleView(
                 onFetchRequested = { viewModel.fetchJoke() }
