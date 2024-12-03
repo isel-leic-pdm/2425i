@@ -2,6 +2,9 @@ package pdm.demos.jokeofday
 
 import android.app.Application
 import androidx.room.Room
+import androidx.work.Constraints
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -10,6 +13,7 @@ import kotlinx.serialization.json.Json
 import pdm.demos.jokeofday.domain.JokesService
 import pdm.demos.jokeofday.http.IcanhazDadJokes
 import pdm.demos.jokeofday.storage.JokesDB
+import java.util.concurrent.TimeUnit
 
 /**
  * The application wide tag used for logging
@@ -50,5 +54,21 @@ class JokeApplication : Application(), DependenciesContainer {
             klass = JokesDB::class.java,
             name = "jokes-db"
         ).build()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(androidx.work.NetworkType.UNMETERED)
+            .build()
+
+        val workItem = PeriodicWorkRequestBuilder<CoroutineJokeDownloadWorkItem>(
+            repeatInterval = 1,
+            TimeUnit.DAYS
+        ).setConstraints(constraints).build()
+
+        WorkManager.getInstance(this)
+            .enqueue(workItem)
     }
 }
