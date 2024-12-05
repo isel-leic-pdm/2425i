@@ -52,9 +52,10 @@ fun PreferencesDisplayView(
             onValueChange = { onEditIntent(it.text, EditableField.Nick) }
         )
         Spacer(modifier = Modifier.padding(8.dp))
-        TaglineTextField(tagline = state.userInfo?.tagline ?: "", onValueChange = {
-            onEditIntent(it, EditableField.Tagline)
-        })
+        TaglineTextField(
+            tagline = state.userInfo?.tagline ?: "",
+            onValueChange = { onEditIntent(it, EditableField.Tagline) }
+        )
 
         Row(
             horizontalArrangement = Arrangement.Center,

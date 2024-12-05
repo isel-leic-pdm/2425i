@@ -1,5 +1,6 @@
 package pdm.demos.guessadoodle.preferences
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import pdm.demos.guessadoodle.preferences.views.EditableField

@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,8 +42,8 @@ fun PreferencesEditView(
     val isNickFocused = (state.prevState.userInfo?.nick ?: "") != state.nickText
     val isTagLineFocused = !isNickFocused
 
-    var nick by remember { mutableStateOf(TextFieldValue(text = state.nickText, selection = TextRange(state.nickText.length))) }
-    var tagline by remember { mutableStateOf(state.taglineText) }
+    var nick by rememberSaveable { mutableStateOf(TextFieldValue(text = state.nickText, selection = TextRange(state.nickText.length))) }
+    var tagline by rememberSaveable { mutableStateOf(state.taglineText) }
 
     Column(
         verticalArrangement = Arrangement.Center,

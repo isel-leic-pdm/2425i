@@ -1,11 +1,12 @@
 package pdm.demos.jokeofday.main
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import pdm.demos.jokeofday.domain.Joke
 import pdm.demos.jokeofday.domain.JokesService
@@ -26,14 +27,27 @@ sealed interface JokeScreenState {
  */
 class JokeScreenViewModel(private val service: JokesService) : ViewModel() {
 
-    var state: JokeScreenState by mutableStateOf<JokeScreenState>(JokeScreenState.Idle)
-        private set
+    private val _stateFlow: MutableStateFlow<JokeScreenState> =
+        MutableStateFlow(JokeScreenState.Idle)
+    val stateFlow: StateFlow<JokeScreenState> = _stateFlow.asStateFlow()
+
+    fun listenToJokes() {
+        viewModelScope.launch {
+            service.joke.collect { joke ->
+                joke?.let {
+                    _stateFlow.value = JokeScreenState.Loading
+                    delay(1000)
+                    _stateFlow.value = JokeScreenState.Success(joke)
+                }
+            }
+        }
+    }
 
     fun fetchJoke() {
-        if (state != JokeScreenState.Loading) {
-            state = JokeScreenState.Loading
+        if (_stateFlow.value != JokeScreenState.Loading) {
+            _stateFlow.value = JokeScreenState.Loading
             viewModelScope.launch {
-                state = try {
+                _stateFlow.value = try {
                     val joke = service.fetchJoke()
                     JokeScreenState.Success(joke)
                 } catch (e: Throwable) {

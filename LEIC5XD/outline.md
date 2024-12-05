@@ -246,7 +246,7 @@ The timer should be updated every second and its state should be preserved on sc
 
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (08) Firestore](https://www.youtube.com/live/Ja00LqGUy50?si=yE8yFjN0XIGda-P4)
-* [Android @ ISEL - 2024 - (09) Kotlin flows](https://youtube.com/live/tPTkTNAsE8U?feature=share)
+* [Android @ ISEL - 2024 - (09) Kotlin flows](https://www.youtube.com/live/tPTkTNAsE8U?si=5s61hZp_hTMIkPEI)
 
 ## Week 9 - 04/11/2024 to 10/11/2024
 ### Subject: Intermediary project presentations
@@ -271,9 +271,9 @@ The timer should be updated every second and its state should be preserved on sc
 #### Video lecture (in Portuguese):
 * [Android @ ISEL - 2024 - (10) Construindo a aplicação "Guess a Doodle"](https://youtube.com/live/rT7ZEH9nifQ?feature=share)
 * [Android @ ISEL - 2024 - (11) Construindo a aplicação "Guess a Doodle"](https://www.youtube.com/live/_mn1qdA1Mi0?si=4pSfMGc8oygF7K7r)
-* [Android @ ISEL - 2024 - (12) Preferences DataStore](https://youtube.com/live/MfGLWty6VIo?feature=share)
+* [Android @ ISEL - 2024 - (12) Preferences DataStore](https://www.youtube.com/live/MfGLWty6VIo?si=yBl_6HlrC9-fEliM)
 
-## Week 11 - 18/11/2024 to 24/11/2024 _(preview)_
+## Week 11 - 18/11/2024 to 24/11/2024
 ### Subject: Android application architecture
 #### Topic breakdown:
 * The Android application as a reactive system
@@ -294,6 +294,55 @@ The timer should be updated every second and its state should be preserved on sc
 * [Testing Kotlin flows](https://developer.android.com/kotlin/flow/test)
 
 #### Video lecture (in Portuguese):
-* Android @ ISEL - 2024 - (13) Construindo a aplicação "Guess a Doodle" _(coming soon)_
-* Android @ ISEL - 2024 - (14) Construindo a aplicação "Guess a Doodle" _(coming soon)_
-* Android @ ISEL - 2024 - (15) Construindo a aplicação "Guess a Doodle" _(coming soon)_
+* [Android @ ISEL - 2024 - (13) Construindo a aplicação "Guess a Doodle"](https://www.youtube.com/live/97uqyWT5jdY?si=A6HoBBkuTFCkPtFo)
+* [Android @ ISEL - 2024 - (14) Construindo a aplicação "Guess a Doodle"](https://www.youtube.com/live/2vkoUo3QxAA?si=52XxhWCUPmJRa3lF)
+* [Android @ ISEL - 2024 - (15) Construindo a aplicação "Guess a Doodle"](https://www.youtube.com/live/p3FtH60Zo7Q?si=pOZxzgNQFNwKzZLd)
+
+## Week 12 - 25/11/2024 to 01/12/2024
+### Subject: Local storage with SQL DB and Room
+### Subject: Android application architecture (continued)
+#### Topic breakdown:
+* Persistence with SQL DB, using the Room library
+  * General characterization
+  * Data model (i.e. relational DB)
+  * Main elements of the Room API
+    * Entities, DAOs and the Database
+    * Writing synchronous and asynchronous queries, using Kotlin's concurrency model
+* The Android application as a reactive system (continued)
+  * Building a reactive architecture starting from the data sources to the UI
+
+### For reference:
+  * [Room persistence library](https://developer.android.com/topic/libraries/architecture/room)
+
+### Practical Class
+* Goal: Work on the course's project.
+
+#### Video lecture (in Portuguese):
+* [Android @ ISEL - 2024 - (16) Construindo a aplicação "Guess a Doodle"](https://www.youtube.com/live/7J9Z9Z9Z9Z9?si=7J9Z9Z9Z9Z9)
+* [Android @ ISEL - 2024 - (17-A) Sessão de codificação](https://www.youtube.com/live/iAhvInrP6qo?si=UveGbCTIMTuivnU0)
+* [Android @ ISEL - 2024 - (17-B) Sessão de codificação](https://youtu.be/XD-4FegRcL4?si=qwViTTb1cVPyRozq)
+
+## Week 13 - 02/12/2024 to 08/12/2024
+### Subject - Background work with WorkManager
+#### Topic breakdown:
+* Execution constraints of Android applications
+  * The application lifecycle
+  * Processes classification: foreground, background and service
+* Background work in Android, overview
+* Persisten background work with WorkManager
+  * WorkManager as a task scheduler
+  * Constraints and execution guarantees
+    * Worker and CoroutineWorker
+
+### For reference:
+* [Processes and app lifecycle](https://developer.android.com/guide/components/activities/process-lifecycle)
+* [Background Tasks Overview](https://developer.android.com/develop/background-work/background-tasks)
+* [WorkManager Overview](https://developer.android.com/develop/background-work/background-tasks/persistent)
+* [Threading in Worker](https://developer.android.com/develop/background-work/background-tasks/persistent/threading/worker)
+* [Threading in CoroutineWorker](https://developer.android.com/develop/background-work/background-tasks/persistent/threading/coroutineworker)
+
+### Practical Class
+* Goal: Work on the course's project.
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (18) Background Work em Android (Parte 1) _(coming soon)_

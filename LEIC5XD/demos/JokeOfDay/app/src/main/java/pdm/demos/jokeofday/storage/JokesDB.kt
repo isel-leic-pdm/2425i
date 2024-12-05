@@ -24,10 +24,10 @@ interface JokeDao {
     suspend fun insertJokes(vararg jokes: JokeEntity)
 
     @Query("SELECT * FROM joke WHERE id = :id")
-    fun loadJokeById(id: Int): Flow<JokeEntity>
+    fun getJokeById(id: Int): Flow<JokeEntity>
 
     @Query("SELECT * FROM joke LIMIT :limit OFFSET :offset")
-    suspend fun loadJokes(limit: Int, offset: Int): List<JokeEntity>
+    suspend fun getJokes(limit: Int, offset: Int): List<JokeEntity>
 }
 
 @Database(entities = [JokeEntity::class], version = 1)

@@ -21,6 +21,7 @@ class JokeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        viewModel.listenToJokes()
         setContent {
             JokeScreen(viewModel = viewModel)
         }
