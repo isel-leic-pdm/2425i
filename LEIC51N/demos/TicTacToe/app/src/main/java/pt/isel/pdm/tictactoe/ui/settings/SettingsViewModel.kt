@@ -18,24 +18,11 @@ class SettingsViewModel(
     private val settingsService: AppSettingsService
 ) : BaseViewModel() {
 
-
-
-    init {
-        viewModelScope.launch {
-            delay(100)
-            userNameFlow.collect{
-                Log.d("FLOW",it)
-
-            }
-
-        }
-    }
-
     val userNameFlow = settingsService.userName
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            "___"
+            ""
         )
 
     fun changeUserName(userName: String) = viewModelActionWithRetry {

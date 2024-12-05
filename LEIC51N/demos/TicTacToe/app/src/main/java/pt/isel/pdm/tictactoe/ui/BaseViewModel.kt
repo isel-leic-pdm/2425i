@@ -7,13 +7,15 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
 sealed interface ViewModelOperationState {
     data object Idle : ViewModelOperationState
     data object Loading : ViewModelOperationState
-    data class Error(val exception: Throwable, val canRetry: Boolean = false) : ViewModelOperationState
+    data class Error(val exception: Throwable, val canRetry: Boolean = false) :
+        ViewModelOperationState
 }
 
 open class BaseViewModel : ViewModel() {
@@ -25,13 +27,11 @@ open class BaseViewModel : ViewModel() {
     protected val viewModelTag: String = this.javaClass.simpleName
 
 
-
-
     protected fun viewModelAction(
         canRetry: Boolean = false,
         function: suspend CoroutineScope.() -> Unit
-    ) {
-        viewModelScope.launch {
+    ): Job {
+        return viewModelScope.launch {
             viewOperationState = ViewModelOperationState.Loading
             safeCallInternal(this, canRetry, function)
             if (viewOperationState !is ViewModelOperationState.Error)
@@ -39,8 +39,8 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    protected fun viewModelActionWithRetry(function: suspend CoroutineScope.() -> Unit) {
-        viewModelAction(true, function)
+    protected fun viewModelActionWithRetry(function: suspend CoroutineScope.() -> Unit): Job {
+        return viewModelAction(true, function)
     }
 
 

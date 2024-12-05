@@ -24,6 +24,9 @@ fun LoadingMessageComponent() {
             modifier = Modifier.align(Alignment.Center),
             text = stringResource(id = R.string.loading)
         )
+
+
+
     }
 }
 

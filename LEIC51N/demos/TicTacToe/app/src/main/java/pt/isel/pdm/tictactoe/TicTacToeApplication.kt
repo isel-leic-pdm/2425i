@@ -7,9 +7,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import pt.isel.pdm.tictactoe.services.AppSettingsService
 import pt.isel.pdm.tictactoe.services.DataStoreSettingsService
+import pt.isel.pdm.tictactoe.services.firestore.FirestoreMatchmakingService
+import pt.isel.pdm.tictactoe.services.MatchmakingService
 
 interface DependencyContainer {
     val settingsService: AppSettingsService
+    val matchMakingService: MatchmakingService
 }
 
 class TicTacToeApplication : Application(), DependencyContainer {
@@ -22,6 +25,10 @@ class TicTacToeApplication : Application(), DependencyContainer {
     )
     override val settingsService: AppSettingsService by lazy {
         DataStoreSettingsService(dataStore)
+    }
+
+    override val matchMakingService: MatchmakingService by lazy {
+        FirestoreMatchmakingService(firestore)
     }
 
     /*

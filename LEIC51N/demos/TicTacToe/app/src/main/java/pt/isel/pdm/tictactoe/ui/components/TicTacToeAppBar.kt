@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,6 +21,7 @@ import pt.isel.pdm.tictactoe.R
 data class NavigationHandlers(
     val onBackHandler: (() -> Unit)? = null,
     val refreshHandler: (() -> Unit)? = null,
+    val onSettingsHandler : (() -> Unit)? = null,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,6 +44,11 @@ fun TopBar(
                 action = navigationHandlers.refreshHandler,
                 image = Icons.Default.Refresh,
                 string = R.string.refresh
+            )
+            ConditionalIconButton(
+                action = navigationHandlers.onSettingsHandler,
+                image = Icons.Default.Settings,
+                string = R.string.screens_settings
             )
         }
 

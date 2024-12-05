@@ -13,4 +13,12 @@
     <string name="retry">retry</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="settings_save">save</string>
+    <string name="screens_settings">Settings</string>
+    <string name="main_play_online">Play Online</string>
+    <string name="main_play_offline">Play offline</string>
+    <string name="main_setup_username">Set your username in the settings to play online!</string>
+    <string name="title_activity_remote_game">RemoteGameActivity</string>
+    <string name="lobby_create_lobby">create lobby</string>
+    <string name="screens_lobby">Lobby</string>
+    <string name="cancel">cancel</string>
 </resources>

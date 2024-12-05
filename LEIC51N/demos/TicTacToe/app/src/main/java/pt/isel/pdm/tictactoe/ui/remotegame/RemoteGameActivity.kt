@@ -1,4 +1,4 @@
-package pt.isel.pdm.tictactoe.ui.game
+package pt.isel.pdm.tictactoe.ui.remotegame
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -9,18 +9,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import pt.isel.pdm.tictactoe.ui.BaseViewModelActivity
 import pt.isel.pdm.tictactoe.ui.components.viewModelInit
-import pt.isel.pdm.tictactoe.ui.lobby.LobbyScreen
-import pt.isel.pdm.tictactoe.ui.remotegame.RemoteGameActivity
 import pt.isel.pdm.tictactoe.ui.theme.TicTacToeTheme
 
-class LobbyActivity : BaseViewModelActivity<LobbyViewModel>() {
+class RemoteGameActivity : BaseViewModelActivity<RemoteGameViewModel>() {
 
-    override val viewModel: LobbyViewModel by viewModels {
+    override val viewModel: RemoteGameViewModel by viewModels {
         viewModelInit {
-            LobbyViewModel(
-                dependencyContainer.matchMakingService,
-                dependencyContainer.settingsService
-            )
+            RemoteGameViewModel()
         }
     }
 
@@ -29,13 +24,11 @@ class LobbyActivity : BaseViewModelActivity<LobbyViewModel>() {
         enableEdgeToEdge()
         setContent {
             TicTacToeTheme {
-                LobbyScreen(
-                    viewModel = viewModel,
-                    navigateBack = { finish() },
-                    navigateToRemoteGame = {
-                        navigate<RemoteGameActivity>()
-                    }
-                )
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    RemoteGameScreen(
+                        viewModel = viewModel,
+                    )
+                }
             }
         }
     }
