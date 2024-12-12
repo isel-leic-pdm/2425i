@@ -5,8 +5,6 @@ import pt.isel.pdm.tictactoe.domain.GameSession
 
 
 interface RemoteGameService {
-
-
     suspend fun getGameSession(info: GameInfo): GameSession
     suspend fun play(game: GameSession, idx: Int): GameSession
     suspend fun waitForOtherPlayer(game: GameSession): GameSession

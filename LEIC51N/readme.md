@@ -319,3 +319,29 @@ The timer should be updated every second and its state should be preserved on sc
 
 ### Practical Class
 * Goal: Work on the course's project. 
+
+
+## Week 13 - 2/12/2024 to 6/12/2024
+### Subject: Designing Mobile Applications (cont)
+#### Topic breakdown:
+* Application architecture
+* Approaches on problem solving
+* Avoiding concurrency (when possible)
+* Design techniques
+
+### Practical Class
+* Goal: Work on the course's project. 
+
+## Week 14 - 9/12/2024 to 13/12/2024
+### Subject: Designing Mobile Applications (cont)
+#### Topic breakdown:
+* Application and server logic
+* Storing Transient state on ViewModels
+
+### For reference:
+ * [SavedStateHandle API Reference](https://developer.android.com/reference/androidx/lifecycle/SavedStateHandle)
+ * [Saved State module for ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate)
+ 
+### Practical Class
+* Goal: Work on the course's project. 
+
