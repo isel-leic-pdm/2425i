@@ -4,9 +4,11 @@ import com.google.firebase.firestore.DocumentSnapshot
 import pt.isel.pdm.tictactoe.domain.Cell
 import pt.isel.pdm.tictactoe.domain.CellState
 import pt.isel.pdm.tictactoe.domain.Cells
+import pt.isel.pdm.tictactoe.domain.GameInfo
 import pt.isel.pdm.tictactoe.domain.GameLobby
 import pt.isel.pdm.tictactoe.domain.GameSession
 import pt.isel.pdm.tictactoe.domain.GameState
+import pt.isel.pdm.tictactoe.services.RemoteGameService
 
 class FirestoreExtensions {
     companion object {
@@ -25,7 +27,7 @@ class FirestoreExtensions {
         const val GAME_BOARD_FIELD = "board"
         const val GAME_STATE_FIELD = "state"
 
-        const val EMPTY_GAME_BOARD = "         "
+        const val EMPTY_GAME_BOARD = "_________"
 
 
         const val GAME_MOVE_PLAYER1 = '1'
@@ -60,6 +62,18 @@ class FirestoreExtensions {
             val board: List<Cell>,
             val gameState: GameState
          */
+
+        fun documentToGameInfo(
+            doc: DocumentSnapshot,
+            thisPlayerName: String
+
+        ): GameInfo {
+            return GameInfo(
+                doc.getString(GAME_ID_FIELD)!!,
+                thisPlayerName
+            )
+        }
+
         fun documentToGameSession(
             doc: DocumentSnapshot,
             thisPlayerName: String
@@ -77,15 +91,7 @@ class FirestoreExtensions {
 
             val remoteState = doc.getLong(GAME_STATE_FIELD)!!.toInt()
 
-            var state = GameState.Running
-
-
-            if (remoteState == REMOTE_GAME_STATE_DRAW)
-                state = GameState.Draw
-            else if (remoteState == REMOTE_GAME_STATE_WINNER_P1)
-                state = if (thisPlayerP1) GameState.Win else GameState.Lose
-            else if (remoteState == REMOTE_GAME_STATE_WINNER_P2)
-                state = if (thisPlayerP1) GameState.Lose else GameState.Win
+            var state = remoteStateToGameState(remoteState, thisPlayerP1)
 
 
 
@@ -93,10 +99,40 @@ class FirestoreExtensions {
                 gameId = doc.id,
                 myName = thisPlayerName,
                 otherPlayerName = otherPlayerName,
-                isMyTurn = p1Turn && p1 == thisPlayerName,
+                isMyTurn = p1Turn && p1 == thisPlayerName || !p1Turn && p1 != thisPlayerName,
                 board = stringToBoard(doc.getString(GAME_BOARD_FIELD)!!),
-                gameState = state
+                gameState = state,
+                isPlayer1 = thisPlayerP1
             )
+        }
+
+        private fun remoteStateToGameState(
+            remoteState: Int,
+            thisPlayerP1: Boolean
+        ): GameState {
+            var state = GameState.Running
+
+            when (remoteState) {
+                REMOTE_GAME_STATE_DRAW -> state = GameState.Draw
+                REMOTE_GAME_STATE_WINNER_P1 -> state =
+                    if (thisPlayerP1) GameState.Win else GameState.Lose
+
+                REMOTE_GAME_STATE_WINNER_P2 -> state =
+                    if (thisPlayerP1) GameState.Lose else GameState.Win
+            }
+            return state
+        }
+
+        fun gameStateToRemoteState(
+            gameState: GameState,
+            gameSession: GameSession
+        ): Int {
+            return when (gameState) {
+                GameState.Running -> REMOTE_GAME_STATE_RUNNING
+                GameState.Win -> if (gameSession.isPlayer1) REMOTE_GAME_STATE_WINNER_P1 else REMOTE_GAME_STATE_WINNER_P2
+                GameState.Lose -> if (gameSession.isPlayer1) REMOTE_GAME_STATE_WINNER_P2 else REMOTE_GAME_STATE_WINNER_P1
+                GameState.Draw -> REMOTE_GAME_STATE_DRAW
+            }
         }
 
 
@@ -108,18 +144,33 @@ class FirestoreExtensions {
             return documentToGameSession(this, thisPlayer)
         }
 
+        fun DocumentSnapshot.toGameInfo(thisPlayer: String): GameInfo {
+            return documentToGameInfo(this, thisPlayer)
+        }
+
+        fun boardToString(board: List<Cell>): String {
+            val str = StringBuilder()
+
+            board.forEachIndexed { idx, cell ->
+                if (cell.state == CellState.EMPTY)
+                    str.append("_")
+                else
+                    str.append(if (cell.state == GameSession.PLAYER1_CELLSTATE) GAME_MOVE_PLAYER1 else GAME_MOVE_PLAYER2)
+            }
+
+            return str.toString()
+        }
+
         fun stringToBoard(board: String): List<Cell> {
 
             val retBoard = Cells.emptyBoard.toMutableList()
             board.forEachIndexed { idx, cell ->
 
-                if (cell == ' ')
+                if (cell == '_')
                     return@forEachIndexed
 
-                if (cell == GAME_MOVE_PLAYER1) {
-                    retBoard[idx] = Cell.createCell(idx, CellState.X)
-                } else
-                    retBoard[idx] = Cell.createCell(idx, CellState.O)
+                retBoard[idx] =
+                    Cell.createCell(idx, GameSession.getCellState(cell == GAME_MOVE_PLAYER1))
 
             }
             return retBoard

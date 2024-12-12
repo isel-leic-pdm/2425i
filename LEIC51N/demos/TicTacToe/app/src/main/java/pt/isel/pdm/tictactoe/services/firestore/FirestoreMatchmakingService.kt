@@ -11,9 +11,11 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.timeout
 import kotlinx.coroutines.tasks.await
+import pt.isel.pdm.tictactoe.domain.GameInfo
 import pt.isel.pdm.tictactoe.domain.GameLobby
 import pt.isel.pdm.tictactoe.domain.GameSession
 import pt.isel.pdm.tictactoe.services.MatchmakingService
+import pt.isel.pdm.tictactoe.services.firestore.FirestoreExtensions.Companion.toGameInfo
 import pt.isel.pdm.tictactoe.services.firestore.FirestoreExtensions.Companion.toGameLobby
 import pt.isel.pdm.tictactoe.services.firestore.FirestoreExtensions.Companion.toGameSession
 import java.time.Duration
@@ -34,7 +36,7 @@ class FirestoreMatchmakingService(
             }
         }
 
-    override suspend fun createLobbyAndWaitForPlayer(userName: String): GameSession {
+    override suspend fun createLobbyAndWaitForPlayer(userName: String): GameInfo {
 
         //
         //  creates a lobby and waits for the player 2
@@ -88,7 +90,7 @@ class FirestoreMatchmakingService(
                 .timeout(60.toDuration(DurationUnit.SECONDS))
                 .first()
 
-            return game.toGameSession(userName)
+            return game.toGameInfo(userName)
         } catch (e: Exception) {
             lobbyDocReference?.delete()?.await()
             gameDoc?.delete()?.await()
@@ -96,7 +98,7 @@ class FirestoreMatchmakingService(
         }
     }
 
-    override suspend fun joinLobby(user: String, lobby: GameLobby): GameSession {
+    override suspend fun joinLobby(user: String, lobby: GameLobby): GameInfo {
 
         //
         //  Players can't have the same name!
@@ -132,7 +134,7 @@ class FirestoreMatchmakingService(
         //Player 2 adds its player name and game starts
         gameRef.update(FirestoreExtensions.GAME_PLAYER2_NAME, userName).await()
 
-        return gameRef.get().await().toGameSession(userName)
+        return gameRef.get().await().toGameInfo(userName)
 
     }
 

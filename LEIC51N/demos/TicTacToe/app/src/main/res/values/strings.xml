@@ -21,4 +21,8 @@
     <string name="lobby_create_lobby">create lobby</string>
     <string name="screens_lobby">Lobby</string>
     <string name="cancel">cancel</string>
+    <string name="remote_game_starting">Starting</string>
+    <string name="remote_game_waitingForOtherPlayer">Waiting for other player</string>
+    <string name="game_loss">Loss</string>
+    <string name="remote_game_forfeit">Forfeit</string>
 </resources>

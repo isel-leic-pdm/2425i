@@ -9,10 +9,13 @@ import pt.isel.pdm.tictactoe.services.AppSettingsService
 import pt.isel.pdm.tictactoe.services.DataStoreSettingsService
 import pt.isel.pdm.tictactoe.services.firestore.FirestoreMatchmakingService
 import pt.isel.pdm.tictactoe.services.MatchmakingService
+import pt.isel.pdm.tictactoe.services.RemoteGameService
+import pt.isel.pdm.tictactoe.services.firestore.FirestoreRemoteGameService
 
 interface DependencyContainer {
     val settingsService: AppSettingsService
     val matchMakingService: MatchmakingService
+    val remoteGameService: RemoteGameService
 }
 
 class TicTacToeApplication : Application(), DependencyContainer {
@@ -29,6 +32,9 @@ class TicTacToeApplication : Application(), DependencyContainer {
 
     override val matchMakingService: MatchmakingService by lazy {
         FirestoreMatchmakingService(firestore)
+    }
+    override val remoteGameService: RemoteGameService by lazy {
+        FirestoreRemoteGameService(firestore)
     }
 
     /*

@@ -14,28 +14,25 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.flow.collect
 import pt.isel.pdm.tictactoe.R
+import pt.isel.pdm.tictactoe.domain.GameInfo
 import pt.isel.pdm.tictactoe.domain.GameSession
 import pt.isel.pdm.tictactoe.ui.ViewModelOperationState
 import pt.isel.pdm.tictactoe.ui.components.AppScaffold
 import pt.isel.pdm.tictactoe.ui.components.LoadingAndErrorComponent
 import pt.isel.pdm.tictactoe.ui.components.NavigationHandlers
-import pt.isel.pdm.tictactoe.ui.game.LobbyViewModel
-import pt.isel.pdm.tictactoe.ui.main.MainViewModel
 
 
 @Composable
 fun LobbyScreen(
     viewModel: LobbyViewModel,
     navigateBack: () -> Unit,
-    navigateToRemoteGame: (GameSession) -> Unit
+    navigateToRemoteGame: (GameInfo) -> Unit,
 
 ) = AppScaffold(
     title = R.string.screens_lobby,

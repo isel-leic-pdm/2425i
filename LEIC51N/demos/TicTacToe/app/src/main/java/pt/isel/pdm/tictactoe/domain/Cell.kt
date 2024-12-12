@@ -38,6 +38,9 @@ object Cells {
 
     val xCell = Cell(0, 0, CellState.X)
 
+    fun checkDraw(board: List<Cell>): Boolean {
+        return board.count { c -> c.state != CellState.EMPTY } >= board.size
+    }
 
     fun checkPlayerWin(board: List<Cell>): Boolean {
         return checkRows(board) ||
@@ -115,8 +118,6 @@ object Cells {
         return count == CellState.O.value * 3 ||
                 count == CellState.X.value * 3;
     }
-
-
 
 
 }

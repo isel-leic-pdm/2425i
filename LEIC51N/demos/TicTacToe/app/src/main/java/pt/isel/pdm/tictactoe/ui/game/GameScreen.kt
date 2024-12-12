@@ -20,13 +20,14 @@ import androidx.compose.ui.unit.sp
 import pt.isel.pdm.tictactoe.R
 import pt.isel.pdm.tictactoe.domain.CellState
 import pt.isel.pdm.tictactoe.domain.ShouldNotHappenException
+import pt.isel.pdm.tictactoe.ui.components.AppScaffold
 import pt.isel.pdm.tictactoe.ui.components.TicTacToeBoard
 import pt.isel.pdm.tictactoe.ui.components.preventBehindElementsFromBeingClicked
 
 @Composable
 fun GameScreen(viewModel: GameViewModel) {
 
-    Scaffold() { paddingValues ->
+    AppScaffold { paddingValues ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
