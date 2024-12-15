@@ -24,9 +24,9 @@ class SettingsActivity : BaseViewModelActivity<SettingsViewModel>() {
         enableEdgeToEdge()
         setContent {
             TicTacToeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SettingsScreen(viewModel)
-                }
+                SettingsScreen(
+                    viewModel = viewModel,
+                    navigateBack = { finish() })
             }
         }
     }

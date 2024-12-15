@@ -4,30 +4,42 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import pt.isel.pdm.tictactoe.domain.GameLobby
 import pt.isel.pdm.tictactoe.ui.BaseViewModelActivity
+import pt.isel.pdm.tictactoe.ui.components.initWithSavedState
 import pt.isel.pdm.tictactoe.ui.components.viewModelInit
+import pt.isel.pdm.tictactoe.ui.lobby.LobbyScreen
+import pt.isel.pdm.tictactoe.ui.lobby.LobbyViewModel
+import pt.isel.pdm.tictactoe.ui.remotegame.RemoteGameActivity
 import pt.isel.pdm.tictactoe.ui.theme.TicTacToeTheme
 
-class LobbyActivity : BaseViewModelActivity<GameViewModel>() {
+class LobbyActivity : BaseViewModelActivity<LobbyViewModel>() {
 
-    override val viewModel: GameViewModel by viewModels {
-        viewModelInit {
+    override val viewModel: LobbyViewModel by viewModels {
+        initWithSavedState { savedState ->
             LobbyViewModel(
+                dependencyContainer.matchMakingService,
+                dependencyContainer.settingsService,
+                savedState
             )
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             TicTacToeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
-                }
+                LobbyScreen(
+                    viewModel = viewModel,
+                    navigateBack = { finish() },
+                    navigateToRemoteGame = { game ->
+                        RemoteGameActivity.navigate(this, game)
+                    }
+                )
             }
         }
     }

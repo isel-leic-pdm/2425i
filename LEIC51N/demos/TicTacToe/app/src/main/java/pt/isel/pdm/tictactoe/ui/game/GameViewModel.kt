@@ -40,7 +40,16 @@ class GameViewModel : BaseViewModel() {
         if (currState !is GameViewState.Running)
             throw ShouldNotHappenException("play: game is not running")
 
-        var idx = currState.board.indexOf(c)
+        val board = currState.board;
+        val idx = board.indexOf(c)
+
+        if(idx == -1)
+        {
+            //there is the possibility of it being clicked twice before the current state is changed
+            //so its possible for this function to be called twice for the same cell, in that scenario
+            //the idx will be -1 because there won't be an empty cell on (x,y)
+            return@viewModelActionWithRetry
+        }
 
         if (currState.board[idx].state != CellState.EMPTY)
             throw ShouldNotHappenException("play: cell not empty")

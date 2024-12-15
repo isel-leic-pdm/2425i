@@ -14,12 +14,22 @@
         android:theme="@style/Theme.TicTacToe"
         tools:targetApi="31">
         <activity
+            android:name=".ui.remotegame.RemoteGameActivity"
+            android:exported="false"
+            android:label="@string/title_activity_remote_game"
+            android:theme="@style/Theme.TicTacToe" />
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
             android:theme="@style/Theme.TicTacToe" />
         <activity
             android:name=".ui.game.GameActivity"
+            android:exported="false"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.TicTacToe" />
+        <activity
+            android:name=".ui.game.LobbyActivity"
             android:exported="false"
             android:label="@string/title_activity_game"
             android:theme="@style/Theme.TicTacToe" />

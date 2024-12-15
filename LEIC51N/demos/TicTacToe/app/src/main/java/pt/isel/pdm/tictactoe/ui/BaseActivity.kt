@@ -22,7 +22,7 @@ abstract class BaseActivity() : ComponentActivity() {
         }
 
 
-    protected inline fun <reified T> navigate(
+    public inline fun <reified T> navigate(
         noinline apply: ((Intent) -> Unit)? = null
     ) {
         val intent = Intent(this, T::class.java)
