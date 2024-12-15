@@ -10,12 +10,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import pdm.demos.guessadoodle.domain.UserInfo
 import pdm.demos.guessadoodle.domain.UserInfoRepository
+import pdm.demos.guessadoodle.preferences.views.EditableField
 
 sealed interface PreferencesScreenState {
     data object Initialized : PreferencesScreenState
     data object Loading : PreferencesScreenState
     data class Displaying(val userInfo: UserInfo?) : PreferencesScreenState
-    data class Editing(val prevState: Displaying, val nickText: String, val taglineText: String) : PreferencesScreenState
+    data class Editing(val prevState: Displaying, val selected: EditableField = EditableField.Nick) : PreferencesScreenState
     data class Saving(val userInfo: UserInfo?) : PreferencesScreenState
     data object Exit : PreferencesScreenState
 }
@@ -45,10 +46,10 @@ class PreferencesViewModel(
         }
     }
 
-    fun startEditing(nickText: String, taglineText: String) {
+    fun startEditing(selected: EditableField) {
         val currentState = _screenState.value
         if (currentState is PreferencesScreenState.Displaying) {
-            _screenState.value = PreferencesScreenState.Editing(currentState, nickText, taglineText)
+            _screenState.value = PreferencesScreenState.Editing(currentState, selected)
         }
     }
 

@@ -4,6 +4,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertIsNotFocused
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -24,16 +25,12 @@ class PreferencesEditViewTests {
     val composeTree = createComposeRule()
 
     @Test
-    fun userInfo_is_displayed_and_focus_is_correct() {
+    fun userInfo_is_displayed_and_the_selected_text_field_has_focus() {
         val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
-        val prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick")))
+        val prevState = PreferencesScreenState.Displaying(expected)
         composeTree.setContent {
             PreferencesEditView(
-                state = PreferencesScreenState.Editing(
-                    prevState = prevState,
-                    nickText = expected.nick.value,
-                    taglineText = expected.tagline ?: ""
-                ),
+                state = PreferencesScreenState.Editing(prevState = prevState, selected = EditableField.Nick),
                 onSaveIntent = { },
                 onCancelIntent = { }
             )
@@ -43,28 +40,21 @@ class PreferencesEditViewTests {
             .onNodeWithTag(NICK_TEXT_TAG, useUnmergedTree = true)
             .assertIsDisplayed()
             .assertTextEquals(expected.nick.value)
+            .assertIsFocused()
 
         composeTree
             .onNodeWithTag(TAGLINE_TEXT_TAG, useUnmergedTree = true)
             .assertIsDisplayed()
             .assertTextEquals(expected.tagline ?: "")
-
-        val expectedFocusTag =
-            if (expected.nick.value == (prevState.userInfo?.nick ?: "")) TAGLINE_TEXT_TAG
-            else NICK_TEXT_TAG
-
-        composeTree.onNodeWithTag(expectedFocusTag).assertIsFocused()
+            .assertIsNotFocused()
     }
 
     @Test
     fun buttons_are_in_correct_state() {
-        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesEditView(
                 state = PreferencesScreenState.Editing(
-                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick"))),
-                    nickText = expected.nick.value,
-                    taglineText = expected.tagline ?: ""
+                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick")))
                 ),
                 onSaveIntent = { },
                 onCancelIntent = { }
@@ -78,13 +68,10 @@ class PreferencesEditViewTests {
     @Test
     fun onCancelIntent_is_called_when_cancel_button_is_pressed() {
         var onCancelIntentCalled = false
-        val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesEditView(
                 state = PreferencesScreenState.Editing(
-                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick"))),
-                    nickText = expected.nick.value,
-                    taglineText = expected.tagline ?: ""
+                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick")))
                 ),
                 onSaveIntent = { },
                 onCancelIntent = { onCancelIntentCalled = true }
@@ -98,14 +85,11 @@ class PreferencesEditViewTests {
     @Test
     fun onSaveIntent_is_called_with_the_entered_userInfo() {
         var onSaveIntentParam: UserInfo? = null
-        val initial = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         val expected = UserInfo(nick = Nick("A new nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesEditView(
                 state = PreferencesScreenState.Editing(
-                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick"))),
-                    nickText = initial.nick.value,
-                    taglineText = initial.tagline ?: ""
+                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick")))
                 ),
                 onSaveIntent = { onSaveIntentParam = it },
                 onCancelIntent = { }
@@ -113,6 +97,7 @@ class PreferencesEditViewTests {
         }
 
         composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextReplacement(expected.nick.value)
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextReplacement(expected.tagline ?: "")
         composeTree.onNodeWithTag(OK_BUTTON_TAG).performClick()
         assert(onSaveIntentParam == expected) {
             "Expected: $expected, but was: $onSaveIntentParam"
@@ -121,14 +106,11 @@ class PreferencesEditViewTests {
 
     @Test
     fun save_button_is_disabled_when_nick_is_invalid() {
-        val initial = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         val invalidNick = " "
         composeTree.setContent {
             PreferencesEditView(
                 state = PreferencesScreenState.Editing(
-                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick"))),
-                    nickText = initial.nick.value,
-                    taglineText = initial.tagline ?: ""
+                    prevState = PreferencesScreenState.Displaying(UserInfo(nick = Nick("Nick")))
                 ),
                 onSaveIntent = { },
                 onCancelIntent = { }

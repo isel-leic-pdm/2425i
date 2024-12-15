@@ -7,8 +7,6 @@ import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTextInput
-import androidx.compose.ui.test.performTextReplacement
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +27,7 @@ class PreferencesDisplayViewTests {
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { _, _ -> },
+                onEditIntent = { _ -> },
                 onCancelIntent = { }
             )
         }
@@ -51,7 +49,7 @@ class PreferencesDisplayViewTests {
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { _, _ -> },
+                onEditIntent = { _ -> },
                 onCancelIntent = { }
             )
         }
@@ -67,7 +65,7 @@ class PreferencesDisplayViewTests {
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { _, _ -> },
+                onEditIntent = { _ -> },
                 onCancelIntent = { onCancelIntentCalled = true }
             )
         }
@@ -77,48 +75,41 @@ class PreferencesDisplayViewTests {
     }
 
     @Test
-    fun onEditIntent_is_called_when_text_is_entered_on_the_nick_text_field() {
-        var onEditIntentParams: Pair<String, EditableField>? = null
+    fun onEditIntent_is_called_when_the_nick_text_field_is_selected() {
+        var onEditIntentParam: EditableField? = null
         val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { text, field -> onEditIntentParams = Pair(text, field) },
+                onEditIntent = { editableField -> onEditIntentParam = editableField },
                 onCancelIntent = { }
             )
         }
 
-        val enteredText = "something"
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextReplacement(enteredText)
-        assert(onEditIntentParams != null)
-        assert(onEditIntentParams?.first == enteredText) {
-            "Expected: $enteredText, Actual: ${onEditIntentParams?.first}"
-        }
-        assert(onEditIntentParams?.second == EditableField.Nick) {
-            "Expected: ${EditableField.Nick}, Actual: ${onEditIntentParams?.second}"
+
+        composeTree.onNodeWithTag(NICK_TEXT_TAG).performClick()
+        assert(onEditIntentParam != null)
+        assert(onEditIntentParam == EditableField.Nick) {
+            "Expected: EditableField.Nick, Actual: $onEditIntentParam"
         }
     }
 
     @Test
-    fun onEditIntent_is_called_when_text_is_entered_on_the_tagline_text_field() {
-        var onEditIntentParams: Pair<String, EditableField>? = null
+    fun onEditIntent_is_called_when_the_tagline_text_field_is_selected() {
+        var onEditIntentParam: EditableField? = null
         val expected = UserInfo(nick = Nick("Nick"), tagline = "I'm a tagline")
         composeTree.setContent {
             PreferencesDisplayView(
                 PreferencesScreenState.Displaying(expected),
-                onEditIntent = { enteredText, editableField -> onEditIntentParams = Pair(enteredText, editableField) },
+                onEditIntent = { editableField -> onEditIntentParam = editableField },
                 onCancelIntent = { }
             )
         }
 
-        val enteredText = "something"
-        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextReplacement(enteredText)
-        assert(onEditIntentParams != null)
-        assert(onEditIntentParams?.first == enteredText) {
-            "Expected: $enteredText, Actual: ${onEditIntentParams?.first}"
-        }
-        assert(onEditIntentParams?.second == EditableField.Tagline) {
-            "Expected: ${EditableField.Tagline}, Actual: ${onEditIntentParams?.second}"
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performClick()
+        assert(onEditIntentParam != null)
+        assert(onEditIntentParam == EditableField.Tagline) {
+            "Expected: EditableField.Tagline, Actual: $onEditIntentParam"
         }
     }
 }

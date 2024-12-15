@@ -1,12 +1,12 @@
 package pdm.demos.guessadoodle.preferences.views
 
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsFocused
+import androidx.compose.ui.test.assertIsNotFocused
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
-import androidx.compose.ui.text.input.TextFieldValue
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,43 +17,45 @@ class NickTextFieldTests {
 
     @Test
     fun nick_is_displayed() {
-        val expected = TextFieldValue("John")
+        val expected = "John"
         composeTree.setContent {
-            NickTextField(nick = expected, onValueChange = { })
+            NickTextField(nick = expected)
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG, useUnmergedTree = true).assertTextEquals(expected.text)
+        composeTree.onNodeWithTag(NICK_TEXT_TAG, useUnmergedTree = true).assertTextEquals(expected)
     }
 
     @Test
     fun onValueChange_is_called_when_text_is_changed() {
-        var actual = TextFieldValue("")
+        var actual = ""
         val expected = "John"
         composeTree.setContent {
             NickTextField(nick = actual, onValueChange = { actual = it })
         }
 
         composeTree.onNodeWithTag(NICK_TEXT_TAG).performTextInput(expected)
-        assert(actual.text == expected)
+        assert(actual == expected)
     }
 
     @Test
     fun enabled_state_is_correct() {
         val enabled = true
         composeTree.setContent {
-            NickTextField(nick = TextFieldValue(""), onValueChange = { }, enabled = enabled)
+            NickTextField(nick = "", enabled = enabled)
         }
 
         composeTree.onNodeWithTag(NICK_TEXT_TAG).assertIsEnabled()
     }
 
     @Test
-    fun focus_state_is_correct() {
-        val focused = true
+    fun onFocusReceived_is_called_when_clicked() {
+        var focused = false
         composeTree.setContent {
-            NickTextField(nick = TextFieldValue(""), onValueChange = { }, requestFocus = focused)
+            NickTextField(nick = "", onFocusReceived = { focused = true })
         }
 
-        composeTree.onNodeWithTag(NICK_TEXT_TAG).assertIsFocused()
+        composeTree.onNodeWithTag(NICK_TEXT_TAG).assertIsNotFocused()
+        composeTree.onNodeWithTag(NICK_TEXT_TAG).performClick()
+        assert(focused)
     }
 }

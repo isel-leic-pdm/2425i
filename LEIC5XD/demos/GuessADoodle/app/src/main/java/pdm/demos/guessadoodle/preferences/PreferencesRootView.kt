@@ -1,6 +1,5 @@
 package pdm.demos.guessadoodle.preferences
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import pdm.demos.guessadoodle.preferences.views.EditableField
@@ -28,12 +27,7 @@ fun PreferencesRootView(viewModel: PreferencesViewModel, onBackIntent: () -> Uni
 
         is PreferencesScreenState.Displaying -> PreferencesDisplayView(
             state = screenState,
-            onEditIntent = { text, field ->
-                val (first, second) =
-                    if (field == EditableField.Nick) Pair(text, screenState.userInfo?.tagline ?: "")
-                    else Pair(screenState.userInfo?.nick?.value ?: "", text)
-                viewModel.startEditing(nickText = first, taglineText = second)
-            },
+            onEditIntent = { field -> viewModel.startEditing(selected = field) },
             onCancelIntent = onBackIntent
         )
 

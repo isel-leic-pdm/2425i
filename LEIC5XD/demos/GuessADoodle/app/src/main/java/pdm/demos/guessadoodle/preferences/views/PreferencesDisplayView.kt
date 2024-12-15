@@ -38,7 +38,7 @@ enum class EditableField { Nick, Tagline }
 @Composable
 fun PreferencesDisplayView(
     state: PreferencesScreenState.Displaying,
-    onEditIntent: (String, EditableField) -> Unit,
+    onEditIntent: (EditableField) -> Unit,
     onCancelIntent: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -48,13 +48,15 @@ fun PreferencesDisplayView(
         modifier = modifier.fillMaxSize().testTag(DISPLAY_VIEW_TAG)
     ) {
         NickTextField(
-            nick = TextFieldValue(state.userInfo?.nick?.value ?: ""),
-            onValueChange = { onEditIntent(it.text, EditableField.Nick) }
+            nick = state.userInfo?.nick?.value ?: "",
+            onValueChange = { onEditIntent(EditableField.Nick) },
+            onFocusReceived = { onEditIntent(EditableField.Nick) }
         )
         Spacer(modifier = Modifier.padding(8.dp))
         TaglineTextField(
             tagline = state.userInfo?.tagline ?: "",
-            onValueChange = { onEditIntent(it, EditableField.Tagline) }
+            onValueChange = { onEditIntent(EditableField.Tagline) },
+            onFocusReceived = { onEditIntent(EditableField.Tagline) }
         )
 
         Row(
@@ -80,7 +82,7 @@ fun PreferencesDisplayViewPreview() {
     GuessADoodleTheme {
         PreferencesDisplayView(
             state = PreferencesScreenState.Displaying(UserInfo(Nick("Palecas"), "Sem medo")),
-            onEditIntent = { _, _ -> },
+            onEditIntent = { _ -> },
             onCancelIntent = { }
         )
     }

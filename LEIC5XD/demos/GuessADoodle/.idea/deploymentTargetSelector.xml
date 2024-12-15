@@ -16,16 +16,16 @@
       <SelectionState runConfigName="Tests in 'pdm.demos.guessadoodle'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="when_Editing_cancel_button_transitions_to_Displaying_with_original_info()">
+      <SelectionState runConfigName="NickTextFieldTests">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="when_Editing_save_button_calls_onBackIntent_once_save_completes()">
+      <SelectionState runConfigName="TaglineTextFieldTests">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreferencesActivityTests">
+      <SelectionState runConfigName="userInfo_is_displayed_and_one_of_the_text_fields_has_focus()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="userInfo_is_displayed_and_focus_is_correct()">
+      <SelectionState runConfigName="PreferencesEditViewTests">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

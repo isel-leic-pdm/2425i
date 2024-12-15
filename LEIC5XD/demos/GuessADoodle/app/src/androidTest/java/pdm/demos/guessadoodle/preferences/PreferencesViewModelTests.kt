@@ -10,6 +10,7 @@ import org.junit.Test
 import pdm.demos.guessadoodle.domain.Nick
 import pdm.demos.guessadoodle.domain.UserInfo
 import pdm.demos.guessadoodle.domain.UserInfoRepository
+import pdm.demos.guessadoodle.preferences.views.EditableField
 import pdm.demos.guessadoodle.utils.ReplaceMainDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -69,12 +70,12 @@ class PreferencesViewModelTests {
         }
 
     @Test
-    fun when_displaying_startEditing_transitions_to_Editing() {
+    fun when_displaying_calls_to_startEditing_transitions_to_Editing() {
         val sut = PreferencesViewModel(
             userInfoRepository = fakeRepo,
             initialState = PreferencesScreenState.Displaying(testUserInfo)
         )
-        sut.startEditing(nickText = testUserInfo.nick.value, taglineText = testUserInfo.tagline ?: "")
+        sut.startEditing(selected = EditableField.Tagline)
         assert(sut.screenState.value is PreferencesScreenState.Editing) {
             "Expected state to be Editing, but was ${sut.screenState.value}"
         }
@@ -86,7 +87,7 @@ class PreferencesViewModelTests {
             userInfoRepository = fakeRepo,
             initialState = PreferencesScreenState.Initialized
         )
-        sut.startEditing(nickText = testUserInfo.nick.value, taglineText = testUserInfo.tagline ?: "")
+        sut.startEditing(selected = EditableField.Tagline)
         assert(sut.screenState.value is PreferencesScreenState.Initialized) {
             "Expected state to be Initialized, but was ${sut.screenState.value}"
         }
@@ -98,8 +99,6 @@ class PreferencesViewModelTests {
             userInfoRepository = fakeRepo,
             initialState = PreferencesScreenState.Editing(
                 prevState = PreferencesScreenState.Displaying(testUserInfo),
-                nickText = testUserInfo.nick.value,
-                taglineText = testUserInfo.tagline ?: ""
             )
         )
         sut.saveData(testUserInfo)
@@ -114,9 +113,7 @@ class PreferencesViewModelTests {
             val sut = PreferencesViewModel(
                 userInfoRepository = fakeRepo,
                 initialState = PreferencesScreenState.Editing(
-                    prevState = PreferencesScreenState.Displaying(testUserInfo),
-                    nickText = testUserInfo.nick.value,
-                    taglineText = testUserInfo.tagline ?: ""
+                    prevState = PreferencesScreenState.Displaying(testUserInfo)
                 )
             )
 
@@ -144,9 +141,7 @@ class PreferencesViewModelTests {
         val sut = PreferencesViewModel(
             userInfoRepository = fakeRepo,
             initialState = PreferencesScreenState.Editing(
-                prevState = PreferencesScreenState.Displaying(testUserInfo),
-                nickText = testUserInfo.nick.value,
-                taglineText = testUserInfo.tagline ?: ""
+                prevState = PreferencesScreenState.Displaying(testUserInfo)
             )
         )
         sut.cancelEditing()

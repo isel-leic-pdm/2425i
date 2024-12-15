@@ -9,10 +9,8 @@ import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
-
 import org.junit.runner.RunWith
 import pdm.demos.guessadoodle.domain.Nick
 import pdm.demos.guessadoodle.domain.UserInfo
@@ -96,7 +94,7 @@ class PreferencesRootViewTests {
     }
 
     @Test
-    fun when_Displaying_entering_text_transitions_to_Editing_with_received_text() {
+    fun when_Displaying_selecting_a_text_field_transitions_to_Editing() {
         val expectedTagline = "Tagline"
         composeTree.setContent {
             PreferencesRootView(
@@ -105,12 +103,8 @@ class PreferencesRootViewTests {
             )
         }
         composeTree.onNodeWithTag(DISPLAY_VIEW_TAG).assertIsDisplayed()
-        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performTextInput(expectedTagline)
-
+        composeTree.onNodeWithTag(TAGLINE_TEXT_TAG).performClick()
         composeTree.onNodeWithTag(EDIT_VIEW_TAG).assertIsDisplayed()
-        composeTree
-            .onNodeWithTag(TAGLINE_TEXT_TAG, useUnmergedTree = true)
-            .assertTextEquals(expectedTagline)
     }
 
     @Test
@@ -118,11 +112,7 @@ class PreferencesRootViewTests {
         composeTree.setContent {
             PreferencesRootView(
                 viewModel = createFakeViewModel(
-                    screenState = Editing(
-                        prevState = Displaying(UserInfo(Nick("John"))),
-                        nickText = "John",
-                        taglineText = "Tagline"
-                    )
+                    screenState = Editing(prevState = Displaying(UserInfo(Nick("John"))))
                 ),
                 onBackIntent = { }
             )
@@ -137,13 +127,7 @@ class PreferencesRootViewTests {
         val previousState = Displaying(UserInfo(Nick(expectedNick), expectedTagline))
         composeTree.setContent {
             PreferencesRootView(
-                viewModel = createFakeViewModel(
-                    screenState = Editing(
-                        prevState = previousState,
-                        nickText = "Modified Nick",
-                        taglineText = "Modified Tagline"
-                    )
-                ),
+                viewModel = createFakeViewModel(screenState = Editing(prevState = previousState)),
                 onBackIntent = { }
             )
         }
@@ -173,11 +157,7 @@ class PreferencesRootViewTests {
         composeTree.setContent {
             PreferencesRootView(
                 viewModel = createFakeViewModel(
-                    screenState = Editing(
-                        prevState = Displaying(UserInfo(Nick("John"))),
-                        nickText = "John",
-                        taglineText = "Tagline"
-                    )
+                    screenState = Editing(prevState = Displaying(UserInfo(Nick("John"))))
                 ),
                 onBackIntent = { backIntentCalled = true }
             )

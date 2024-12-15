@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,6 +24,7 @@ fun TaglineTextField(
     enabled: Boolean = true,
     onValueChange: (String) -> Unit = {},
     requestFocus: Boolean = false,
+    onFocusReceived: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -35,7 +37,10 @@ fun TaglineTextField(
         singleLine = true,
         label = { Text(stringResource(R.string.preferences_tagline_label)) },
         leadingIcon = { Icon(imageVector = Icons.Outlined.Info, contentDescription = "Tagline") },
-        modifier = modifier.testTag(TAGLINE_TEXT_TAG).focusRequester(focusRequester),
+        modifier = modifier
+            .testTag(TAGLINE_TEXT_TAG)
+            .focusRequester(focusRequester)
+            .onFocusChanged { focusState -> if (focusState.isFocused) { onFocusReceived() } },
         enabled = enabled,
         onValueChange = onValueChange
     )

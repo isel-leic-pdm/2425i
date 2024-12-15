@@ -11,10 +11,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import pdm.demos.guessadoodle.R
 import pdm.demos.guessadoodle.domain.MAX_NICK_SIZE
@@ -23,9 +22,10 @@ import pdm.demos.guessadoodle.ui.theme.GuessADoodleTheme
 
 @Composable
 fun NickTextField(
-    nick: TextFieldValue,
+    nick: String,
     enabled: Boolean = true,
-    onValueChange: (TextFieldValue) -> Unit = {},
+    onValueChange: (String) -> Unit = {},
+    onFocusReceived: () -> Unit = {},
     requestFocus: Boolean = false,
     modifier: Modifier = Modifier
 ) {
@@ -42,7 +42,11 @@ fun NickTextField(
         },
         label = { Text(stringResource(R.string.preferences_nick_label)) },
         leadingIcon = { Icon(imageVector = Icons.Default.Face, contentDescription = "Nick") },
-        modifier = modifier.testTag(NICK_TEXT_TAG).focusRequester(focusRequester),
+        modifier = modifier
+            .testTag(NICK_TEXT_TAG)
+            .focusRequester(focusRequester)
+            .onFocusChanged { focusState -> if (focusState.isFocused) { onFocusReceived() }
+        },
         enabled = enabled,
         onValueChange = onValueChange
     )
@@ -52,6 +56,6 @@ fun NickTextField(
 @Composable
 fun NickTextFieldPreview() {
     GuessADoodleTheme {
-        NickTextField(nick = TextFieldValue("John Doe"))
+        NickTextField(nick = "John Doe")
     }
 }
