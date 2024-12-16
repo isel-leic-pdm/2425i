@@ -329,7 +329,7 @@ The timer should be updated every second and its state should be preserved on sc
   * The application lifecycle
   * Processes classification: foreground, background and service
 * Background work in Android, overview
-* Persisten background work with WorkManager
+* Persistent background work with WorkManager
   * WorkManager as a task scheduler
   * Constraints and execution guarantees
     * Worker and CoroutineWorker
@@ -345,4 +345,30 @@ The timer should be updated every second and its state should be preserved on sc
 * Goal: Work on the course's project.
 
 #### Video lecture (in Portuguese):
-* Android @ ISEL - 2024 - (18) Background Work em Android (Parte 1) _(coming soon)_
+* [Android @ ISEL - 2024 - (18) Background Work com a API Work Manager](https://www.youtube.com/live/1JCP57T6MUs?si=p9UU6fu6moohawV1)
+
+## Week 14 - 09/12/2024 to 15/12/2024
+### Subject: Development of the course's project
+
+## Week 15 - 16/12/2024 to 22/12/2024
+### Subject: State management: saving and restoring the view model's state
+#### Topic breakdown:
+* The Android application lifecycle, revisited
+  * Activity lifecycle, revisited
+  * ViewModel lifecycle, revisited
+  * Execution guarantees and constraints, revisited
+* Saving the UI state, continued
+  * Jetpack Compose's `rememberSaveable`, revisited
+  * Saving and restoring the ViewModel's state
+    * The `SavedStateHandle` API
+
+### For reference:
+* [Saving UI states](https://developer.android.com/topic/libraries/architecture/saving-states)
+* [Using SavedStateHandle](https://developer.android.com/topic/libraries/architecture/viewmodel-savedstate)
+* [Creating ViewModels with dependencies](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-factories)
+
+### Resources:
+* [Tic-Tac-Toe application source code](https://github.com/isel-leic-pdm/2324i/tree/main/demos/TicTacToe)
+
+#### Video lecture (in Portuguese):
+* Android @ ISEL - 2024 - (19) Estado da UI, revisitado _(coming soon)_
