@@ -371,4 +371,4 @@ The timer should be updated every second and its state should be preserved on sc
 * [Tic-Tac-Toe application source code](https://github.com/isel-leic-pdm/2324i/tree/main/demos/TicTacToe)
 
 #### Video lecture (in Portuguese):
-* Android @ ISEL - 2024 - (19) Estado da UI, revisitado _(coming soon)_
+* [Android @ ISEL - 2024 - (19) Estado da UI, revisitado](https://www.youtube.com/live/4YabgjHG7N8?si=mwOFXdxTvHLfHVI0)
