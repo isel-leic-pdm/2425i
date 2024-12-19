@@ -20,7 +20,6 @@ class DatabaseWorker(
 
         Log.d("Worker", "Database Worker Running!")
         val app = (applicationContext as FirebaseExplorerApplication)
-        Log.d("Test", app.hashCode().toString())
 
 
         val obj = SimplePersistentEntity(

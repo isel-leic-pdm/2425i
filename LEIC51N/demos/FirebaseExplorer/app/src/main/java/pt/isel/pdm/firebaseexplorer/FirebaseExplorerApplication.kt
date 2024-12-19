@@ -1,10 +1,10 @@
 package pt.isel.pdm.firebaseexplorer
 
 import android.app.Application
-import android.util.Log
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
 import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
@@ -51,10 +51,10 @@ class FirebaseExplorerApplication : Application(), DependencyContainer {
     override fun onCreate() {
         super.onCreate()
 
-        //logWorker()
+        logWorker()
         //paramWorker()
         //constraintsWorker()
-        periodicWorker()
+        //periodicWorker()
     }
 
     private fun logWorker() {
@@ -102,19 +102,27 @@ class FirebaseExplorerApplication : Application(), DependencyContainer {
             .enqueue(workRequest)
     }
 
+
     private fun periodicWorker() {
 
+        val uniqueWork = "MyWork"
 
-        Log.d("Test", this.hashCode().toString())
-        val workRequest: WorkRequest =
+        val workManager = WorkManager
+            .getInstance(this)
+
+
+        val workRequest =
             PeriodicWorkRequestBuilder<DatabaseWorker>(
                 repeatInterval = 15,
                 TimeUnit.MINUTES
             )
+                .addTag(uniqueWork)
                 .build()
 
-        WorkManager
-            .getInstance(this)
-            .enqueue(workRequest)
+        workManager.enqueueUniquePeriodicWork(
+            uniqueWork,
+            ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
+            workRequest
+        )
     }
 }

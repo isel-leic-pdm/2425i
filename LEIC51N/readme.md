@@ -345,3 +345,23 @@ The timer should be updated every second and its state should be preserved on sc
 ### Practical Class
 * Goal: Work on the course's project. 
 
+
+
+## Week 15 - 16/12/2024 to 20/12/2024
+### Subject - Background work with WorkManager
+#### Topic breakdown:
+* Execution constraints of Android applications
+  * The application lifecycle
+  * Processes classification: foreground, background and service
+* Background work in Android, overview
+* Persistent background work with WorkManager
+  * WorkManager as a task scheduler
+  * Constraints and execution guarantees
+    * Worker and CoroutineWorker
+
+### For reference:
+* [Processes and app lifecycle](https://developer.android.com/guide/components/activities/process-lifecycle)
+* [Background Tasks Overview](https://developer.android.com/develop/background-work/background-tasks)
+* [WorkManager Overview](https://developer.android.com/develop/background-work/background-tasks/persistent)
+* [Threading in Worker](https://developer.android.com/develop/background-work/background-tasks/persistent/threading/worker)
+* [Threading in CoroutineWorker](https://developer.android.com/develop/background-work/background-tasks/persistent/threading/coroutineworker)
