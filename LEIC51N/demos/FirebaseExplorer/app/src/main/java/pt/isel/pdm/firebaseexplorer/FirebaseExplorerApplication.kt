@@ -51,10 +51,10 @@ class FirebaseExplorerApplication : Application(), DependencyContainer {
     override fun onCreate() {
         super.onCreate()
 
-        logWorker()
+        //logWorker()
         //paramWorker()
         //constraintsWorker()
-        //periodicWorker()
+        periodicWorker()
     }
 
     private fun logWorker() {
@@ -88,8 +88,9 @@ class FirebaseExplorerApplication : Application(), DependencyContainer {
 
         val constraints = Constraints.Builder()
             .setRequiresCharging(false)
-            .setRequiredNetworkType(NetworkType.METERED)
+            .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
+
 
 
         val workRequest: WorkRequest =

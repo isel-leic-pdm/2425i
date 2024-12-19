@@ -17,7 +17,6 @@ companion object
 }
     override fun doWork(): Result {
 
-        workerParams.inputData
         val param = workerParams.inputData.getString(WORKER_PARAM)
         Log.d("Worker", "My param is $param")
 
