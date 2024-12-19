@@ -77,6 +77,8 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
 
+
+
     //room
     val room_version = "2.6.1"
 
@@ -105,4 +107,26 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
+
+
+    //work manager
+    val work_version = "2.9.1"
+
+    // (Java only)
+    implementation("androidx.work:work-runtime:$work_version")
+
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+
+    // optional - RxJava2 support
+    implementation("androidx.work:work-rxjava2:$work_version")
+
+    // optional - GCMNetworkManager support
+    implementation("androidx.work:work-gcm:$work_version")
+
+    // optional - Test helpers
+    androidTestImplementation("androidx.work:work-testing:$work_version")
+
+    // optional - Multiprocess support
+    implementation("androidx.work:work-multiprocess:$work_version")
 }
